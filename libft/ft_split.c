@@ -6,106 +6,94 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:02:29 by raisufaj          #+#    #+#             */
-/*   Updated: 2024/11/18 13:29:23 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:51:02 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+static size_t	ft_count_word(const char *str, char c)
+{
+	size_t	i;
+	size_t	in_word;
+	size_t	word;
+
+	i = 0;
+	in_word = 0;
+	word = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			in_word = 0;
+		else if (in_word == 0)
+		{
+			in_word = 1;
+			word++;
+		}
+		i++;
+	}
+	return (word);
+}
+
+static size_t	word_len(const char *s, char delimiter)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] && s[len] != delimiter)
+		len++;
+	return (len);
+}
+
+static void	ft_free_split(char **ptr, int strs)
 {
 	int	i;
-	int	words;
+
+	if (!ptr)
+		return ;
+	i = 0;
+	while (i < strs)
+		free(ptr[i++]);
+	free(ptr);
+}
+
+static char	**fill_words(char **ptr, const char *s, char c)
+{
+	size_t	i;
+	size_t	result_index;
+	size_t	wd_len;
+	size_t	wd_index;
 
 	i = 0;
-	words = 0;
+	result_index = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] != c)
-			i++;
-		words++;
-		while (s[i] && s[i] == c)
-			i++;
-	}
-	return (words);
-}
-
-static int	get_words(char **tab, char const *s, char c)
-{
-	int		index;
-	size_t	len;
-	int		i;
-
-	index = 0;
-	i = 0;
-	while (s[index])
-	{
-		len = 0;
-		while (s[index + len] != c && s[index + len])
-			len++;
-		tab[i] = ft_substr(s, index, len);
-		if (!tab[i])
+		if (s[i] != c)
 		{
-			while (--i >= 0)
-				free(tab[i]);
-			return (0);
+			wd_len = word_len(&s[i], c);
+			ptr[result_index] = malloc((wd_len + 1) * sizeof(char));
+			if (!ptr[result_index])
+				return (ft_free_split(ptr, result_index), NULL);
+			wd_index = 0;
+			while (wd_index < wd_len)
+				ptr[result_index][wd_index++] = s[i++];
+			ptr[result_index++][wd_index] = '\0';
 		}
-		while (s[index + len] == c && s[index + len])
-			len++;
-		i++;
-		index += len;
+		else
+			i++;
 	}
-	return (1);
-}
-
-static void	*free_clean(char *cleanstr, char **tab)
-{
-	free(cleanstr);
-	free(tab);
-	return (NULL);
+	ptr[result_index] = NULL;
+	return (ptr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	*cleanstr;
-	char	cleaner[2];
-	int		nbstr;
-	char	**tab;
+	char	**ptr;
 
-	cleaner[0] = c;
-	cleaner[1] = 0;
-	cleanstr = ft_strtrim(s, cleaner);
-	if (!cleanstr)
+	if (!s)
 		return (NULL);
-	nbstr = count_words(cleanstr, c);
-	tab = malloc(nbstr * sizeof(char *) + sizeof(NULL));
-	if (!tab)
-	{
-		free(cleanstr);
+	ptr = malloc((ft_count_word(s, c) + 1) * sizeof(char *));
+	if (!ptr)
 		return (NULL);
-	}
-	if (!get_words(tab, cleanstr, c))
-		free_clean(cleanstr, tab);
-	tab[nbstr] = NULL;
-	free(cleanstr);
-	return (tab);
+	return (fill_words(ptr, s, c));
 }
-
-/*#include <stdio.h>
-
-int	main()
-{
-	char *str = "Hello everyone! Testing split for Libft!";
-	char sep = ' ';
-	char **result = ft_split(str, sep);
-	int	i = 0;
-	while (result[i] != NULL)
-	{
-		printf("Word %d: %s\n", i, result[i]);
-		free(result[i]);
-		i++;
-	}
-
-	free(result);
-	return (0);
-}*/

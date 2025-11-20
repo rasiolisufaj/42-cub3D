@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2024/11/12 18:17:34 by raisufaj          #+#    #+#             */
 /*   Updated: 2024/11/12 18:17:34 by raisufaj         ###   ########.fr       */
 /*                                                                            */
@@ -12,11 +15,19 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 15
+# endif
+# define MAX_FD 10240
 
-# include <stddef.h>
-# include <unistd.h>
-# include <stdlib.h>
+# include <fcntl.h>
 # include <limits.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <string.h>
 
 typedef struct s_list
 {
@@ -24,6 +35,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+// Libft Functions
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -62,7 +74,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
@@ -71,5 +83,19 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
+
+// Get Next Line Functions
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+void	fill_str_gnl(char *res, char *s1, char *s2);
+
+// FT_PRINTF Functions
+int		print_int(int num);
+int		print_char(char c);
+int		print_string(char *s);
+int		print_pointer(void *ptr);
+int		print_unsigned(unsigned int n);
+int		ft_printf(const char *format, ...);
+int		print_hex(unsigned long n, char format);
 
 #endif
