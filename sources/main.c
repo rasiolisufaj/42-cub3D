@@ -67,13 +67,15 @@ int	ft_close(int keycode, t_data *data)
 	return (0);
 }
 
+// Handle destroy events
 int	handle_destroy(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img.img);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	exit (0);
+	exit(0);
+	return (0);
 }
 
 int	main(void)
@@ -81,6 +83,8 @@ int	main(void)
 	t_data	data;
 	int		i;
 	int		j;
+	int		z;
+	int		g;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
@@ -111,10 +115,22 @@ int	main(void)
 	while (i < WIN_WIDTH)
 	{
 		j = 0;
+		z = WIN_HEIGHT / 2;
+		g = z / 2;
 		while (j < WIN_HEIGHT / 2)
 		{
 			ft_mlx_pixel_put(&data.img, i, j, 0x00FF0000);
 			j++;
+		}
+		while (g < z)
+		{
+			ft_mlx_pixel_put(&data.img, i, g, 0x0000FF00);
+			g++;
+		}
+		while (z < WIN_HEIGHT)
+		{
+			ft_mlx_pixel_put(&data.img, i, z, 0x000000FF);
+			z++;
 		}
 		i++;
 	}
