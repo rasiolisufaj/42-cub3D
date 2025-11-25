@@ -1,8 +1,8 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	err_msg(char *detail, char *str, int code)
 {
-	ft_putstr_fd("cub3D: Error", 2);
+	ft_putstr_fd("Error", 2);
 	if (detail)
 	{
 		ft_putstr_fd(": ", 2);
@@ -17,9 +17,9 @@ int	err_msg(char *detail, char *str, int code)
 	return (code);
 }
 
-int	err_msg_val(int detail, char *str, int code)
+int	err_msg_val(char *detail, char *str, int code)
 {
-	ft_putstr_fd("cub3D: Error: ", 2);
+	ft_putstr_fd("Error: ", 2);
 	ft_putstr_fd(detail, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(str, 2);

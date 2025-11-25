@@ -20,7 +20,9 @@ LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Sources
 SRC_PATH = ./sources/
-SRC = mlx_tests.c
+SRC = 	main.c \
+		parsing/check_args.c \
+		error.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects

@@ -1,3 +1,61 @@
 #include "cub3d.h"
 
-/* Checks whether the arg given is a correct .cub extension, checks that the file exists, checks that it is a file and not a directory, checks that the file is not a .xpm extension */
+/* Checks whether the arg given is a correct .cub extension,
+	checks that the file exists, checks that it is a file and not a directory,
+	checks that the file is not a .xpm extension */
+
+static bool	is_dir(char *arg)
+{
+	int		fd;
+	bool	retval;
+
+	retval = false;
+	fd = open(arg, O_DIRECTORY);
+	if (fd >= 0)
+	{
+		close(fd);
+		retval = true;
+	}
+	return (retval);
+}
+
+static bool	is_cub_file(char *arg)
+{
+	size_t	len;
+
+	len = ft_strlen(arg);
+	if (len < 5)
+		return (false);
+	if ((arg[len - 4] != '.' || arg[len - 3] != 'c' || arg[len - 2] != 'u'
+			|| arg[len - 1] != 'b'))
+		return (false);
+	return (true);
+}
+
+static bool	is_xpm_file(char *arg)
+{
+	size_t	len;
+
+	len = ft_strlen(arg);
+	if ((arg[len - 4] != '.' || arg[len - 3] != 'x' || arg[len - 2] != 'p'
+			|| arg[len - 1] != 'm'))
+		return (false);
+	return (true);
+}
+
+int	check_file(char *arg, bool cub)
+{
+	int	fd;
+
+	if (is_dir(arg))
+		return (err_msg(arg, ERR_FILE_IS_DIR, 1));
+	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		return (err_msg(arg, strerror(errno), 1));
+	close(fd);
+	if (cub && !is_cub_file(arg))
+		return (err_msg(arg, ERR_FILE_NOT_CUB, 1));
+	if (!cub && !is_xpm_file(arg))
+		return (err_msg(arg, ERR_FILE_NOT_XPM, 1));
+	return (0);
+}
