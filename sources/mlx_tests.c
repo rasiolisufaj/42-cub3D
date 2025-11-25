@@ -1,9 +1,4 @@
-#include "../minilibx-linux/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#define WIN_WIDTH 1080
-#define WIN_HEIGHT 900
+#include "../includes/cub3d.h"
 #define ESC_KEY 65307
 // COLORS
 #define RESET "\033[0m"
@@ -68,6 +63,13 @@ int	ft_close(int keycode, t_data *data)
 	return (0);
 }
 
+int	print_message(t_data *data)
+{
+	(void)data;
+	printf("KEY JUST RELEASED\n");
+	return (0);
+}
+
 // Handle destroy events
 int	handle_destroy(t_data *data)
 {
@@ -90,19 +92,19 @@ int	main(void)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 	{
-		perror("MLX INIT: Could not establish connection to graphical system\n");
+		perror(ERR_MLX_START);
 		return (1);
 	}
 	data.mlx_win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "MAIN TEST");
 	if (!data.mlx_win)
 	{
-		perror("MLX WIN: Could not create window\n");
+		perror(ERR_MLX_WIN);
 		return (1);
 	}
 	data.img.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data.img.img)
 	{
-		perror("MLX_NEW_IMAGE: Could not init image\n");
+		perror(ERR_MLX_IMG);
 		return (1);
 	}
 	/*
@@ -138,5 +140,6 @@ int	main(void)
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img, 0, 0);
 	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L << 0, ft_close, &data);
 	mlx_hook(data.mlx_win, ON_DESTROY, 0, handle_destroy, &data);
+	mlx_hook(data.mlx_win, ON_KEYUP, 1L << 1, print_message, &data);
 	mlx_loop(data.mlx);
 }
