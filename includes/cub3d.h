@@ -19,6 +19,28 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 
+// STRUCTURES
+typedef struct s_mapinfo
+{
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+	int			index_end_of_map;
+}				t_mapinfo;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	t_mapinfo	mapinfo;
+	char		**map;
+}				t_data;
+
 // ERROR MESSAGES
 # define ERR_USAGE "./cub3D <path/to/map.cub>"
 # define ERR_FILE_NOT_CUB "Not an acceptable .cub file"
@@ -31,10 +53,13 @@
 # define ERR_MLX_IMG "Could not create mlx image"
 
 /* check_args.c */
-int	check_file(char *arg, bool cub);
+int				check_file(char *arg, bool cub);
 
 /* error.c */
-int	err_msg(char *detail, char *str, int code);
-int	err_msg_val(char *detail, char *str, int code);
+int				err_msg(char *detail, char *str, int code);
+int				err_msg_val(char *detail, char *str, int code);
+
+/* free_data.c */
+void			free_tab(void **tab);
 
 #endif

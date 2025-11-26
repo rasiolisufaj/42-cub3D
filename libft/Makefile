@@ -6,7 +6,7 @@
 #    By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/16 13:04:07 by raisufaj          #+#    #+#              #
-#    Updated: 2025/05/14 14:21:03 by raisufaj         ###   ########.fr        #
+#    Updated: 2025/11/26 11:50:34 by raisufaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 
 RM = rm -f
 
