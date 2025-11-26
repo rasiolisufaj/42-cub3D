@@ -17,12 +17,12 @@ void	free_tab(void **tab)
 	}
 }
 
-static void	free_map(t_data *data)
-{
-	if (data->mapinfo.fd > 0)
-		close(data->mapinfo.fd);
-	if (data->mapinfo.file)
-		free_tab((void **)data->mapinfo.file);
-	if (data->map)
-		free_tab((void **)data->map);
-}
+// static void	free_map(t_data *data)
+// {
+// 	if (data->mapinfo.fd > 0)
+// 		close(data->mapinfo.fd);
+// 	if (data->mapinfo.file)
+// 		free_tab((void **)data->mapinfo.file);
+// 	if (data->map)
+// 		free_tab((void **)data->map);
+// }

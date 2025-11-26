@@ -6,21 +6,21 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 12:20:04 by raisufaj          #+#    #+#             */
-/*   Updated: 2024/11/16 12:33:31 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:25:58 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	if (size && INT_MAX / size < nmemb)
+	if (size && INT_MAX / size < count)
 		return (NULL);
-	ptr = (void *)malloc(nmemb * size);
+	ptr = (void *)malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmemb * size);
+	ft_bzero(ptr, count * size);
 	return (ptr);
 }

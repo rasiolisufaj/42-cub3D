@@ -1,36 +1,27 @@
 #include "../includes/cub3d.h"
 
-static int	get_number_of_lines(char *path)
+static int	parse_args(t_data *data, char **av)
 {
-	int		fd;
-	char	*line;
-	int		line_count;
-
-	line_count = 0;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		err_msg(path, strerror(errno), errno);
-	else
-	{
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			line_count++;
-			free(line);
-			line = get_next_line(fd);
-		}
-		close(fd);
-	}
-	printf("LINE COUNT: %d\n", line_count);
-	return (line_count);
+	if (check_file(av[1], true) != 0)
+		return (1);
+	parse_data(av[1], data);
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
+	t_data	data;
 	if (ac != 2)
 		return (err_msg("Usage", ERR_USAGE, 1));
-	if (check_file(av[1], true) != 0)
+	if (parse_args(&data, av) != 0)
 		return (1);
-	get_number_of_lines(av[1]);
+	int i = 0;
+	printf("FROM WHILE LOOP: \n");
+	while (data.mapinfo.file[i] != 0)
+	{
+		printf("%s", data.mapinfo.file[i]);
+		i++;
+	}
+	free_tab((void **)data.mapinfo.file);
 	return (0);
 }

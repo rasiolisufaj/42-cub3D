@@ -55,6 +55,9 @@ typedef struct s_data
 /* check_args.c */
 int				check_file(char *arg, bool cub);
 
+/* parse_data.c */
+void			parse_data(char *path, t_data *data);
+
 /* error.c */
 int				err_msg(char *detail, char *str, int code);
 int				err_msg_val(char *detail, char *str, int code);
