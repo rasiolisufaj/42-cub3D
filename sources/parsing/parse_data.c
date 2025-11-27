@@ -72,7 +72,7 @@ void	parse_data(char *path, t_data *data)
 	}
 	data->mapinfo.fd = open(path, O_RDONLY);
 	if (data->mapinfo.fd < 0)
-		err_msg(path, strerror(errno), 1);
+		err_msg(path, strerror(errno), FAILURE);
 	else
 	{
 		fill_tab(row, column, i, data);

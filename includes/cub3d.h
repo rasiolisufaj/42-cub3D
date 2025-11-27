@@ -19,27 +19,57 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 
+enum				e_output
+{
+	SUCCESS = 0,
+	FAILURE = 1,
+	ERR = 2,
+	BREAK = 3,
+	CONTINUE = 4
+};
+
 // STRUCTURES
+
+typedef struct s_texinfo
+{
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	int				*floor;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
+	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+}					t_texinfo;
+
 typedef struct s_mapinfo
 {
-	int			fd;
-	int			line_count;
-	char		*path;
-	char		**file;
-	int			height;
-	int			width;
-	int			index_end_of_map;
-}				t_mapinfo;
+	int				fd;
+	int				line_count;
+	char			*path;
+	char			**file;
+	int				height;
+	int				width;
+	int				index_end_of_map;
+}					t_mapinfo;
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	t_mapinfo	mapinfo;
-	char		**map;
-}				t_data;
+	void			*mlx;
+	void			*win;
+	int				win_height;
+	int				win_width;
+	t_mapinfo		mapinfo;
+	char			**map;
+	int				**textures;
+	t_texinfo		texinfo;
+}					t_data;
 
 // ERROR MESSAGES
 # define ERR_USAGE "./cub3D <path/to/map.cub>"
@@ -53,16 +83,16 @@ typedef struct s_data
 # define ERR_MLX_IMG "Could not create mlx image"
 
 /* check_args.c */
-int				check_file(char *arg, bool cub);
+int					check_file(char *arg, bool cub);
 
 /* parse_data.c */
-void			parse_data(char *path, t_data *data);
+void				parse_data(char *path, t_data *data);
 
 /* error.c */
-int				err_msg(char *detail, char *str, int code);
-int				err_msg_val(char *detail, char *str, int code);
+int					err_msg(char *detail, char *str, int code);
+int					err_msg_val(char *detail, char *str, int code);
 
 /* free_data.c */
-void			free_tab(void **tab);
+void				free_tab(void **tab);
 
 #endif
