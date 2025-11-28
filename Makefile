@@ -22,7 +22,9 @@ LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
 SRC_PATH = ./sources/
 SRC = 	main.c \
 		parsing/check_args.c \
-		parsing/parse_data.c \
+		parsing/parse_file_data.c \
+		parsing/get_file_data.c \
+		parsing/parsing_utils.c \
 		exit/free_data.c \
 		error.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))

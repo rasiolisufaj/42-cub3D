@@ -81,12 +81,17 @@ typedef struct s_data
 # define ERR_MLX_START "Could not start mlx"
 # define ERR_MLX_WIN "Could not create mlx window"
 # define ERR_MLX_IMG "Could not create mlx image"
+# define ERR_TEX_INVALID "Invalid texture(s)"
+# define ERR_INVALID_MAP "Map content is wrong or incomplete"
 
 /* check_args.c */
 int					check_file(char *arg, bool cub);
 
 /* parse_data.c */
 void				parse_data(char *path, t_data *data);
+
+/* get_file_data.c */
+int					get_file_data(t_data *data, char **map);
 
 /* error.c */
 int					err_msg(char *detail, char *str, int code);
