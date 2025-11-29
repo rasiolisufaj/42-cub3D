@@ -78,7 +78,7 @@ int	get_file_data(t_data *data, char **map)
 {
 	int i;
 	int j;
-	int ret;
+	int retval;
 
 	i = 0;
 	while (map[i])
@@ -86,12 +86,12 @@ int	get_file_data(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			ret = filter_info(data, map, i, j);
-			if (ret == BREAK)
+			retval = filter_info(data, map, i, j);
+			if (retval == BREAK)
 				break ;
-			else if (ret == FAILURE)
+			else if (retval == FAILURE)
 				return (FAILURE);
-			else if (ret == SUCCESS)
+			else if (retval == SUCCESS)
 				return (SUCCESS);
 			j++;
 		}

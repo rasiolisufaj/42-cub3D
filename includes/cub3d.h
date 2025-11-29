@@ -83,9 +83,16 @@ typedef struct s_data
 # define ERR_MLX_IMG "Could not create mlx image"
 # define ERR_TEX_INVALID "Invalid texture(s)"
 # define ERR_INVALID_MAP "Map content is wrong or incomplete"
+# define ERR_F_C_IDENTIFIER "Invalid floor/ceiling identifier"
+# define ERR_CEILING_COLOR "Invalid ceiling RGB color"
+# define ERR_FLOOR_COLOR "Invalid floor RGB color"
+# define ERR_RGB_VAL "Invalid RGB value (min: 0, max: 255)"
 
 /* check_args.c */
 int					check_file(char *arg, bool cub);
+
+/* check_textures.c */
+int					check_textures_validity(t_data *data, t_texinfo *textures);
 
 /* parse_data.c */
 void				parse_data(char *path, t_data *data);
@@ -93,9 +100,12 @@ void				parse_data(char *path, t_data *data);
 /* get_file_data.c */
 int					get_file_data(t_data *data, char **map);
 
+/* fill_color_textures.c */
+int					fill_color_textures(t_data *data, t_texinfo *texinfo,
+						char *line, int j);
+
 /* error.c */
 int					err_msg(char *detail, char *str, int code);
-int					err_msg_val(char *detail, char *str, int code);
 
 /* free_data.c */
 void				free_tab(void **tab);

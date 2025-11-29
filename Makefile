@@ -22,6 +22,8 @@ LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
 SRC_PATH = ./sources/
 SRC = 	main.c \
 		parsing/check_args.c \
+		parsing/check_textures.c \
+		parsing/fill_color_textures.c \
 		parsing/parse_file_data.c \
 		parsing/get_file_data.c \
 		parsing/parsing_utils.c \

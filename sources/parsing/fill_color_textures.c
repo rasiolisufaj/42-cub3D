@@ -1,0 +1,81 @@
+#include "../../includes/cub3d.h"
+
+static bool	is_numeric(char *str)
+{
+	int	i;
+
+	if (!str || !str[0])
+		return (false);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static int	*copy_rgb_arr(char **rgb_arr, int *rgb)
+{
+	int	i;
+
+	i = 0;
+	while (rgb_arr[i])
+	{
+		if (!is_numeric(rgb_arr[i]))
+		{
+			free_tab((void **)rgb_arr);
+			free(rgb);
+			return (NULL);
+		}
+		rgb[i] = ft_atoi(rgb_arr[i]);
+		i++;
+	}
+	free_tab((void **)rgb_arr);
+	return (rgb);
+}
+
+static int	*set_rgb_colors(char *str)
+{
+	char	**rgb_arr;
+	int		*rgb;
+	int		count;
+
+	rgb_arr = ft_split(str, ',');
+	if (!rgb_arr)
+		return (NULL);
+	count = 0;
+	while (rgb_arr[count])
+		count++;
+	if (count != 3)
+	{
+		free_tab((void **)rgb_arr);
+		return (0);
+	}
+	rgb = malloc(sizeof(int) * r);
+	if (!rgb)
+		return (err_msg(NULL, ERR_MALLOC, ERR));
+	return (copy_rgb_arr(rgb_arr, rgb));
+}
+
+int	fill_color_textures(t_data *data, t_texinfo *texinfo, char *line, int j)
+{
+	if (line[j + 1] && ft_isprint(line[j + 1]))
+		return (err_msg(data->mapinfo.path, ERR_F_C_IDENTIFIER, ERR));
+	if (line[j] == 'C' && !texinfo->ceiling)
+	{
+		texinfo->ceiling = set_rgb_colors(line + j + 1);
+		if (texinfo->ceiling == 0)
+			return (err_msg(data->mapinfo.path, ERR_CEILING_COLOR, ERR));
+	}
+	else if (line[j] == 'F' && !texinfo->floor)
+	{
+		texinfo->floor = set_rgv_colors(line + j + 1);
+		if (texinfo->floor == 0)
+			return (err_msg(data->mapinfo.path, ERR_FLOOR_COLOR, ERR));
+	}
+	else
+		return (err_msg(data->mapinfo.path, ERR_F_C_IDENTIFIER, ERR));
+	return (SUCCESS);
+}
