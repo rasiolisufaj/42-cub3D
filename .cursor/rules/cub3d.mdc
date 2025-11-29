@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+rules:
+
+    general:
+        - Functions must be under 25 lines.
+        - Compile with: `-Wall -Wextra -Werror`.
+        - No memory leaks, no file descriptor leaks, no undefined behavior.
+        - Keep code modular and organized in proper folders (parsing, movement, render, init, exit, debug).
+
+    allowed-functions:
+        - open, close, read, write
+        - printf, perror, strerror
+        - malloc, free, exit
+        - gettimeofday
+        - All math library functions (-lm)
+        - All MiniLibX functions
+
+    forbidden:
+        - Any libc functions outside the allowed list (no calloc, realloc, strdup, getline, etc.).
+        - Any system calls such as fork, execve, pipe, sockets, or threads.
+        - Any external libraries.
+        - Any C++ code.
+
+    code-requirements:
+        - Always check and handle errors (file opening, allocation failures, MLX failures).
+        - Use header files for prototypes, structures, and macros.
+        - Maintain clear separation between parsing, rendering, raycasting, and utilities.
+
+    behavior:
+    - Implement all features exactly as defined in the Cub3D subject.
+    - Correctly manage MiniLibX lifecycle: init, images, window, hooks, and clean shutdown.
