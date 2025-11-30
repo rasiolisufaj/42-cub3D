@@ -49,9 +49,9 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 {
 	while (ft_is_space(map[i][j]) && map[i][j] == '\n')
 		j++;
-	if (ft_isprint(map[i][j]) && !is_digit(map[i][j]))
+	if (ft_isprint(map[i][j]) && !ft_isdigit(map[i][j]))
 	{
-		if (map[i][j + 1] && ft_isprint(map[i][j + 1]) && !is_digit(map[i][j
+		if (map[i][j + 1] && ft_isprint(map[i][j + 1]) && !ft_isdigit(map[i][j
 				+ 1]))
 		{
 			if (fill_texture_direction(&data->texinfo, map[i], j) == ERR)
@@ -67,8 +67,9 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 	}
 	else if (ft_isdigit(map[i][j]))
 	{
-		if (create_map(data, map, i) == FAILURE)
-			return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
+		// if (create_map(data, map, i) == FAILURE)
+		// 	return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
+		printf("JEMI TE MAP\n");
 		return (SUCCESS);
 	}
 	return (CONTINUE);

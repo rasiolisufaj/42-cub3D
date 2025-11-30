@@ -38,8 +38,6 @@ typedef struct s_texinfo
 	char			*east;
 	int				*floor;
 	int				*ceiling;
-	unsigned long	hex_floor;
-	unsigned long	hex_ceiling;
 	int				size;
 	int				index;
 	double			step;
@@ -87,6 +85,8 @@ typedef struct s_data
 # define ERR_CEILING_COLOR "Invalid ceiling RGB color"
 # define ERR_FLOOR_COLOR "Invalid floor RGB color"
 # define ERR_RGB_VAL "Invalid RGB value (min: 0, max: 255)"
+# define ERR_TEX_MISSING "Missing texture(s)"
+# define ERR_COLOR_MISSING "Missing RGB color(s)"
 
 /* check_args.c */
 int					check_file(char *arg, bool cub);
@@ -109,5 +109,9 @@ int					err_msg(char *detail, char *str, int code);
 
 /* free_data.c */
 void				free_tab(void **tab);
+
+/* parsing_utils.c */
+bool				ft_is_space(char c);
+int					is_whitespace(char c);
 
 #endif
