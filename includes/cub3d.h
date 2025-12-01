@@ -111,6 +111,10 @@ int				err_msg_val(int detail, char *str, int code);
 /* free_data.c */
 int				free_data(t_data *data);
 
+/* exit.c */
+void			clean_exit(t_data *data, int code);
+int				quit_cub3d(t_data *data);
+
 /* free_data.c */
 void			free_tab(void **tab);
 

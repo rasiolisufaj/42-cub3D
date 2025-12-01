@@ -27,6 +27,7 @@ SRC = 	main.c \
 		parsing/parse_file_data.c \
 		parsing/get_file_data.c \
 		parsing/parsing_utils.c \
+		exit/exit.c \
 		exit/free_data.c \
 		error.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
