@@ -47,7 +47,7 @@ static int	fill_texture_direction(t_texinfo *texture, char *line, int j)
 
 static int	filter_info(t_data *data, char **map, int i, int j)
 {
-	while (ft_is_space(map[i][j]) && map[i][j] == '\n')
+	while (ft_is_space(map[i][j]) || map[i][j] == '\n')
 		j++;
 	if (ft_isprint(map[i][j]) && !ft_isdigit(map[i][j]))
 	{
