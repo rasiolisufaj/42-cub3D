@@ -28,9 +28,15 @@ static void	free_texinfo(t_texinfo *textures)
 	if (textures->east)
 		free(textures->east);
 	if (textures->ceiling)
+	{
 		free(textures->ceiling);
+		textures->ceiling = NULL;
+	}
 	if (textures->floor)
+	{
 		free(textures->floor);
+		textures->floor = NULL;
+	}
 }
 
 static void	free_map(t_data *data)

@@ -37,5 +37,6 @@ int	main(int ac, char **av)
 	init_textures(&data.texinfo);
 	if (parse_args(&data, av) != SUCCESS)
 		return (1);
+	free_data(&data);
 	return (0);
 }
