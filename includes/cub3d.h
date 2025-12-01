@@ -109,6 +109,9 @@ int				err_msg(char *detail, char *str, int code);
 int				err_msg_val(int detail, char *str, int code);
 
 /* free_data.c */
+int				free_data(t_data *data);
+
+/* free_data.c */
 void			free_tab(void **tab);
 
 /* parsing_utils.c */

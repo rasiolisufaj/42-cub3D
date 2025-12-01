@@ -3,12 +3,12 @@
 static int	parse_args(t_data *data, char **av)
 {
 	if (check_file(av[1], true) == FAILURE)
-		return (1);
+		return (free_data(data));
 	parse_data(av[1], data);
 	if (get_file_data(data, data->mapinfo.file) == FAILURE)
-		return (1);
+		return (free_data(data));
 	if (check_textures_validity(data, &data->texinfo) == FAILURE)
-		return (1);
+		return (free_data(data));
 	return (0);
 }
 

@@ -1,5 +1,12 @@
 NO         textures/test/north.xpm
-C                                                          0,25,2                         
+
+
+
+
+
+
+
+C                                                         2,25,255                         
 
 
 
@@ -18,12 +25,7 @@ EA       textures/test/east.xpm
 
 
 
-F                    31231230,25,255                                               
-
-
-
-
-
+F                    240,25,255                                               
 
 
 
