@@ -16,3 +16,12 @@ int	err_msg(char *detail, char *str, int code)
 	ft_putstr_fd("\n", 2);
 	return (code);
 }
+
+int	err_msg_val(int detail, char *str, int code)
+{
+	ft_putstr_fd("cub3D: Error: ", 2);
+	ft_putnbr_fd(detail, 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
+	return (code);
+}

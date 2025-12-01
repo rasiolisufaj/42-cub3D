@@ -5,10 +5,10 @@ static int	check_valid_rgb(int *rgb)
 	int	i;
 
 	i = 0;
-	while (rgb[i])
+	while (i < 3)
 	{
 		if (rgb[i] < 0 || rgb[i] > 255)
-			return (err_msg(NULL, ERR_RGB_VAL, FAILURE));
+			return (err_msg_val(rgb[i], ERR_RGB_VAL, FAILURE));
 		i++;
 	}
 	return (SUCCESS);

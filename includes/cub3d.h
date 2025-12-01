@@ -19,7 +19,7 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 
-enum				e_output
+enum			e_output
 {
 	SUCCESS = 0,
 	FAILURE = 1,
@@ -32,42 +32,42 @@ enum				e_output
 
 typedef struct s_texinfo
 {
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
-	int				*floor;
-	int				*ceiling;
-	int				size;
-	int				index;
-	double			step;
-	double			pos;
-	int				x;
-	int				y;
-}					t_texinfo;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	int			*floor;
+	int			*ceiling;
+	int			size;
+	int			index;
+	double		step;
+	double		pos;
+	int			x;
+	int			y;
+}				t_texinfo;
 
 typedef struct s_mapinfo
 {
-	int				fd;
-	int				line_count;
-	char			*path;
-	char			**file;
-	int				height;
-	int				width;
-	int				index_end_of_map;
-}					t_mapinfo;
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+	int			index_end_of_map;
+}				t_mapinfo;
 
 typedef struct s_data
 {
-	void			*mlx;
-	void			*win;
-	int				win_height;
-	int				win_width;
-	t_mapinfo		mapinfo;
-	char			**map;
-	int				**textures;
-	t_texinfo		texinfo;
-}					t_data;
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	t_mapinfo	mapinfo;
+	char		**map;
+	int			**textures;
+	t_texinfo	texinfo;
+}				t_data;
 
 // ERROR MESSAGES
 # define ERR_USAGE "./cub3D <path/to/map.cub>"
@@ -84,34 +84,35 @@ typedef struct s_data
 # define ERR_F_C_IDENTIFIER "Invalid floor/ceiling identifier"
 # define ERR_CEILING_COLOR "Invalid ceiling RGB color"
 # define ERR_FLOOR_COLOR "Invalid floor RGB color"
-# define ERR_RGB_VAL "Invalid RGB value (min: 0, max: 255)"
+# define ERR_RGB_VAL " Invalid RGB value (min: 0, max: 255)"
 # define ERR_TEX_MISSING "Missing texture(s)"
 # define ERR_COLOR_MISSING "Missing RGB color(s)"
 
 /* check_args.c */
-int					check_file(char *arg, bool cub);
+int				check_file(char *arg, bool cub);
 
 /* check_textures.c */
-int					check_textures_validity(t_data *data, t_texinfo *textures);
+int				check_textures_validity(t_data *data, t_texinfo *textures);
 
 /* parse_data.c */
-void				parse_data(char *path, t_data *data);
+void			parse_data(char *path, t_data *data);
 
 /* get_file_data.c */
-int					get_file_data(t_data *data, char **map);
+int				get_file_data(t_data *data, char **map);
 
 /* fill_color_textures.c */
-int					fill_color_textures(t_data *data, t_texinfo *texinfo,
-						char *line, int j);
+int				fill_color_textures(t_data *data, t_texinfo *texinfo,
+					char *line, int j);
 
 /* error.c */
-int					err_msg(char *detail, char *str, int code);
+int				err_msg(char *detail, char *str, int code);
+int				err_msg_val(int detail, char *str, int code);
 
 /* free_data.c */
-void				free_tab(void **tab);
+void			free_tab(void **tab);
 
 /* parsing_utils.c */
-bool				ft_is_space(char c);
-int					is_whitespace(char c);
+bool			ft_is_space(char c);
+int				is_whitespace(char c);
 
 #endif
