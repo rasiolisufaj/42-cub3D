@@ -25,7 +25,7 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	int	i;
 	int	j;
 
-	mapinfo->width = biggest_map_line_len(mapinfo, index);
+	mapinfo->width = longest_map_line_len(mapinfo, index);
 	i = 0;
 	while (i < mapinfo->height)
 	{
