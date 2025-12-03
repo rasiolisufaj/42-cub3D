@@ -18,6 +18,7 @@
 
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
+# define TEX_SIZE 64
 
 enum			e_output
 {
@@ -63,10 +64,14 @@ typedef struct s_data
 	void		*win;
 	int			win_height;
 	int			win_width;
-	t_mapinfo	mapinfo;
 	char		**map;
 	int			**textures;
+	int			**texture_pixels;
+	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
+	// t_player	player;
+	// t_ray		ray;
+	// t_img		minimap;
 }				t_data;
 
 // ERROR MESSAGES
@@ -114,6 +119,14 @@ int				free_data(t_data *data);
 /* exit.c */
 void			clean_exit(t_data *data, int code);
 int				quit_cub3d(t_data *data);
+
+/* init_data.c */
+void			init_data(t_data *data);
+
+/* init_textures.c */
+void			init_texinfo(t_texinfo *textures);
+
+/* init_mlx.c */
 
 /* free_data.c */
 void			free_tab(void **tab);

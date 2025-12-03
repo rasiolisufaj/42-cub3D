@@ -27,6 +27,8 @@ SRC = 	main.c \
 		parsing/parse_file_data.c \
 		parsing/get_file_data.c \
 		parsing/parsing_utils.c \
+		init/init_data.c \
+		init/init_textures.c\
 		exit/exit.c \
 		exit/free_data.c \
 		error.c

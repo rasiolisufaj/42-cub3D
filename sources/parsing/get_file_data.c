@@ -122,7 +122,7 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 	{
 		// if (create_map(data, map, i) == FAILURE)
 		// 	return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
-		printf("JEMI TE MAP\n");
+		// printf("JEMI TE MAP\n");
 		return (SUCCESS);
 	}
 	return (CONTINUE);
