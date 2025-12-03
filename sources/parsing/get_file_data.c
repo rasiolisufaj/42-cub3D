@@ -28,59 +28,6 @@ static char	*get_texture_path(char *line, int j)
 	return (path);
 }
 
-/*static int	fill_texture_direction(t_texinfo *texture, char *line, int j)
-{
-	char	*path;
-
-	if (line[j + 2] && ft_isprint(line[j + 2]))
-		return (ERR);
-	path = get_texture_path(line, j + 2);
-	if (!path)
-		return (ERR);
-	if (line[j] == 'N' && line[j + 1] == 'O')
-	{
-		if (texture->north)
-		{
-			free(path);
-			return (ERR);
-		}
-		texture->north = path;
-	}
-	else if (line[j] == 'S' && line[j + 1] == 'O')
-	{
-		if (texture->south)
-		{
-			free(path);
-			return (ERR);
-		}
-		texture->south = path;
-	}
-	else if (line[j] == 'W' && line[j + 1] == 'E')
-	{
-		if (texture->west)
-		{
-			free(path);
-			return (ERR);
-		}
-		texture->west = path;
-	}
-	else if (line[j] == 'E' && line[j + 1] == 'A')
-	{
-		if (texture->east)
-		{
-			free(path);
-			return (ERR);
-		}
-		texture->east = path;
-	}
-	else
-	{
-		free(path);
-		return (ERR);
-	}
-	return (SUCCESS);
-}*/
-
 static int	fill_texture_direction(t_texinfo *texture, char *line, int j)
 {
 	if (line[j + 2] && ft_isprint(line[j + 2]))
@@ -122,7 +69,6 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 	{
 		// if (create_map(data, map, i) == FAILURE)
 		// 	return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
-		// printf("JEMI TE MAP\n");
 		return (SUCCESS);
 	}
 	return (CONTINUE);
@@ -130,9 +76,9 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 
 int	get_file_data(t_data *data, char **map)
 {
-	int i;
-	int j;
-	int retval;
+	int	i;
+	int	j;
+	int	retval;
 
 	i = 0;
 	while (map[i])
