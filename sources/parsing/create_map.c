@@ -31,7 +31,7 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	{
 		j = 0;
 		map_tab[i] = malloc(sizeof(char) * (mapinfo->width + 1));
-		if (!map_tab)
+		if (!map_tab[i])
 			return (err_msg(NULL, ERR_MALLOC, FAILURE));
 		while (mapinfo->file[index] && mapinfo->file[index][j] != '\n')
 		{
