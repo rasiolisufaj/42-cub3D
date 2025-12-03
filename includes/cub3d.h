@@ -105,6 +105,9 @@ void			parse_data(char *path, t_data *data);
 /* get_file_data.c */
 int				get_file_data(t_data *data, char **map);
 
+/* create_map.c */
+int				create_map(t_data *data, char **file, int i);
+
 /* fill_color_textures.c */
 int				fill_color_textures(t_data *data, t_texinfo *texinfo,
 					char *line, int j);
@@ -134,5 +137,6 @@ void			free_tab(void **tab);
 /* parsing_utils.c */
 bool			ft_is_space(char c);
 int				is_whitespace(char c);
+int				biggest_map_line_len(t_mapinfo *mapinfo, int index);
 
 #endif

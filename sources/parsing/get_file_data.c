@@ -67,8 +67,8 @@ static int	filter_info(t_data *data, char **map, int i, int j)
 	}
 	else if (ft_isdigit(map[i][j]))
 	{
-		// if (create_map(data, map, i) == FAILURE)
-		// 	return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
+		if (create_map(data, map, i) == FAILURE)
+			return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
 		return (SUCCESS);
 	}
 	return (CONTINUE);

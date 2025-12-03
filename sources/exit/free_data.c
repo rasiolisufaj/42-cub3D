@@ -45,8 +45,8 @@ static void	free_map(t_data *data)
 		close(data->mapinfo.fd);
 	if (data->mapinfo.file)
 		free_tab((void **)data->mapinfo.file);
-	// if (data->map)
-	// 	free_tab((void **)data->map);
+	if (data->map)
+		free_tab((void **)data->map);
 }
 
 int	free_data(t_data *data)
