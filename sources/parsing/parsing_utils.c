@@ -16,14 +16,18 @@ int	is_whitespace(char c)
 
 int	longest_map_line_len(t_mapinfo *mapinfo, int index)
 {
-	size_t	longest_len;
+	int		i;
+	size_t	max;
+	size_t	len;
 
-	longest_len = ft_strlen(mapinfo->file[index]);
-	while (mapinfo->file[index])
+	max = 0;
+	i = index;
+	while (mapinfo->file[i])
 	{
-		if (ft_strlen(mapinfo->file[index]) > longest_len)
-			longest_len = ft_strlen(mapinfo->file[index]);
-		index++;
+		len = ft_strlen(mapinfo->file[i]);
+		if (len > max)
+			max = len;
+		i++;
 	}
-	return (longest_len);
+	return (max);
 }
