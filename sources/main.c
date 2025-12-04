@@ -9,6 +9,8 @@ static int	parse_args(t_data *data, char **av)
 		return (free_data(data));
 	if (check_textures_validity(data, &data->texinfo) == FAILURE)
 		return (free_data(data));
+	if (check_map_validity(data, data->map) == FAILURE)
+		return (free_data(data));
 	return (0);
 }
 

@@ -92,6 +92,10 @@ typedef struct s_data
 # define ERR_RGB_VAL " Invalid RGB value (min: 0, max: 255)"
 # define ERR_TEX_MISSING "Missing texture(s)"
 # define ERR_COLOR_MISSING "Missing RGB color(s)"
+# define ERR_MAP_MISSING "Missing map"
+# define ERR_MAP_NO_WALLS "Map is not enclosed by walls"
+# define ERR_MAP_TOO_SMALL "Map must be at least 3 lines high"
+# define ERR_MAP_LAST "Map is not the last element of the file"
 
 /* check_args.c */
 int				check_file(char *arg, bool cub);
@@ -111,6 +115,16 @@ int				create_map(t_data *data, char **file, int i);
 /* fill_color_textures.c */
 int				fill_color_textures(t_data *data, t_texinfo *texinfo,
 					char *line, int j);
+
+/* create_map.c */
+int				create_map(t_data *data, char **file, int i);
+
+/* check_map_borders.c */
+int				skip_spaces(char **map, int i, int j);
+int				check_map_borders(t_mapinfo *map, char **map_tab);
+
+/* check_map_validity.c */
+int				check_map_validity(t_data *data, char **map_tab);
 
 /* error.c */
 int				err_msg(char *detail, char *str, int code);

@@ -8,10 +8,7 @@ static int	count_map_lines(t_data *data, char **file, int i)
 	start = i;
 	while (file[i])
 	{
-		j = 0;
-		while (ft_is_space(file[i][j]) || file[i][j] == '\r'
-			|| file[i][j] == '\v' || file[i][j] == '\f')
-			j++;
+		j = skip_spaces(file, i, 0);
 		if (file[i][j] != '1')
 			break ;
 		i++;
