@@ -9,9 +9,14 @@ static int	count_map_lines(t_data *data, char **file, int i)
 	while (file[i])
 	{
 		j = skip_spaces(file, i, 0);
-		if (file[i][j] != '1')
-			break ;
-		i++;
+		if (file[i][j] == '1')
+		{
+			i++;
+			continue ;
+		}
+		if (line_contains_map_chars(file[i]) && file[i][j] != '1')
+			return (FAILURE);
+		break ;
 	}
 	data->mapinfo.index_end_of_map = i;
 	return (i - start);

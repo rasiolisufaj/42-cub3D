@@ -151,6 +151,7 @@ void			free_tab(void **tab);
 /* parsing_utils.c */
 bool			ft_is_space(char c);
 int				is_whitespace(char c);
+int				line_contains_map_chars(char *line);
 int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 
 #endif
