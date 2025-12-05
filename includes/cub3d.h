@@ -47,6 +47,11 @@ typedef struct s_texinfo
 	int			y;
 }				t_texinfo;
 
+typedef struct s_player
+{
+	char		dir;
+}				t_player;
+
 typedef struct s_mapinfo
 {
 	int			fd;
@@ -69,7 +74,7 @@ typedef struct s_data
 	int			**texture_pixels;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
-	// t_player	player;
+	t_player	player;
 	// t_ray		ray;
 	// t_img		minimap;
 }				t_data;
@@ -96,6 +101,8 @@ typedef struct s_data
 # define ERR_MAP_NO_WALLS "Map is not enclosed by walls"
 # define ERR_MAP_TOO_SMALL "Map must be at least 3 lines high"
 # define ERR_MAP_LAST "Map is not the last element of the file"
+# define ERR_INV_CHARACTER "Invalid character in map"
+# define ERR_NUM_PLAYER "Map has more than one player"
 
 /* check_args.c */
 int				check_file(char *arg, bool cub);
@@ -151,7 +158,7 @@ void			free_tab(void **tab);
 /* parsing_utils.c */
 bool			ft_is_space(char c);
 int				is_whitespace(char c);
-int				line_contains_map_chars(char *line);
+int				wall_contains_map_chars(char *line);
 int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 
 #endif

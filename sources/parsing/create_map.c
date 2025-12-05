@@ -14,7 +14,7 @@ static int	count_map_lines(t_data *data, char **file, int i)
 			i++;
 			continue ;
 		}
-		if (line_contains_map_chars(file[i]) && file[i][j] != '1')
+		if (wall_contains_map_chars(file[i]) && file[i][j] != '1')
 			return (FAILURE);
 		break ;
 	}
@@ -70,10 +70,7 @@ static void	fill_spaces(t_data *data)
 	while (data->map[i])
 	{
 		rowlen = ft_strlen(data->map[i]);
-		j = 0;
-		while (ft_is_space(data->map[i][j]) || data->map[i][j] == '\r'
-			|| data->map[i][j] == '\v' || data->map[i][j] == '\f')
-			j++;
+		j = skip_spaces(data->map, i, 0);
 		while (j < rowlen - 1)
 		{
 			if (data->map[i][j] == ' ')

@@ -1,5 +1,34 @@
 #include "../../includes/cub3d.h"
 
+static int	check_map_elements(t_data *data, char **map_tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	data->player.dir = '0'; // not found yet
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			j = skip_spaces(map_tab, i, j);
+			if (!map_tab[i][j])
+				break ;
+			if (!(ft_strchr("10NSEW", map_tab[i][j])))
+				return (err_msg(data->mapinfo.path, ERR_INV_CHARACTER,
+						FAILURE));
+			if (ft_strchr("NSEW", map_tab[i][j]) && data->player.dir != '0')
+				return (err_msg(data->mapinfo.path, ERR_NUM_PLAYER, FAILURE));
+			if (ft_strchr("NSEW", map_tab[i][j]) && data->player.dir == '0')
+				data->player.dir = map_tab[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
 static int	check_map_is_last(t_mapinfo *map)
 {
 	int	i;
@@ -28,8 +57,8 @@ int	check_map_validity(t_data *data, char **map_tab)
 		return (err_msg(data->mapinfo.path, ERR_MAP_NO_WALLS, FAILURE));
 	if (data->mapinfo.height < 3)
 		return (err_msg(data->mapinfo.path, ERR_MAP_TOO_SMALL, FAILURE));
-	// if (check_map_elements(data, map_tab) == FAILURE)
-	// 	return (FAILURE);
+	if (check_map_elements(data, map_tab) == FAILURE)
+		return (FAILURE);
 	// if (check_player_position(data, map_tab) == FAILURE)
 	// 	return (FAILURE);
 	if (check_map_is_last(&data->mapinfo) == FAILURE)

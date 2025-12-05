@@ -32,16 +32,16 @@ int	longest_map_line_len(t_mapinfo *mapinfo, int index)
 	return (max);
 }
 
-int	line_contains_map_chars(char *line)
+int	wall_contains_map_chars(char *line)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (line[i])
+	j = 0;
+	while (line[j])
 	{
-		if (ft_strchr("01NSEW", line[i]))
+		if (ft_strchr("01NSEW", line[j]))
 			return (1);
-		i++;
+		j++;
 	}
 	return (0);
 }
