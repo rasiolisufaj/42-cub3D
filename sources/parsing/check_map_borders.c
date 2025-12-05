@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_borders.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/05 22:27:11 by raisufaj          #+#    #+#             */
+/*   Updated: 2025/12/05 22:27:15 by raisufaj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int	skip_spaces(char **map, int i, int j)
@@ -6,6 +18,17 @@ int	skip_spaces(char **map, int i, int j)
 		|| map[i][j] == '\f')
 		j++;
 	return (j);
+}
+
+int	is_invalid_cell(char **map_tab, int row, int col)
+{
+	if (row < 0 || col < 0)
+		return (FAILURE);
+	if (!map_tab[row] || (int)ft_strlen(map_tab[row]) <= col)
+		return (FAILURE);
+	if (is_whitespace(map_tab[row][col]) == SUCCESS)
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 static int	is_full_wall_row(char **map, int row)

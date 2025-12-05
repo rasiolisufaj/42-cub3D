@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
+/*   Updated: 2025/12/05 22:26:15 by raisufaj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -50,6 +62,8 @@ typedef struct s_texinfo
 typedef struct s_player
 {
 	char		dir;
+	double		pos_x;
+	double		pos_y;
 }				t_player;
 
 typedef struct s_mapinfo
@@ -79,7 +93,8 @@ typedef struct s_data
 	// t_img		minimap;
 }				t_data;
 
-// ERROR MESSAGES
+/* ERROR MESSAGES*/
+
 # define ERR_USAGE "./cub3D <path/to/map.cub>"
 # define ERR_FILE_NOT_CUB "Not an acceptable .cub file"
 # define ERR_FILE_NOT_XPM "Not a .xpm file"
@@ -103,6 +118,8 @@ typedef struct s_data
 # define ERR_MAP_LAST "Map is not the last element of the file"
 # define ERR_INV_CHARACTER "Invalid character in map"
 # define ERR_NUM_PLAYER "Map has more than one player"
+# define ERR_PLAYER_DIR "Map has no player position (expected N, S, E or W)"
+# define ERR_PLAYER_POS "Invalid player position"
 
 /* check_args.c */
 int				check_file(char *arg, bool cub);
@@ -128,6 +145,7 @@ int				create_map(t_data *data, char **file, int i);
 
 /* check_map_borders.c */
 int				skip_spaces(char **map, int i, int j);
+int				is_invalid_cell(char **map_tab, int row, int col);
 int				check_map_borders(t_mapinfo *map, char **map_tab);
 
 /* check_map_validity.c */
