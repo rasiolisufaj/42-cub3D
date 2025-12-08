@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:15 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:27:18 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static int	check_map_elements(t_data *data, char **map_tab)
 {

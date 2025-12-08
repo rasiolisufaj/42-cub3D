@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:17 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:28:22 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:19:27 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 int	err_msg(char *detail, char *str, int code)
 {

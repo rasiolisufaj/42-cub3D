@@ -32,6 +32,7 @@ SRC = 	main.c \
 		parsing/parsing_utils.c \
 		init/init_data.c \
 		init/init_textures.c\
+		init/init_mlx.c\
 		exit/exit.c \
 		exit/free_data.c \
 		error.c
@@ -85,7 +86,7 @@ clean:
 	make -C $(LIBFT_PATH) clean
 	make -C $(MLX_PATH) clean
 
-# Removee program executable
+# Remove program executable
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_PATH) fclean
