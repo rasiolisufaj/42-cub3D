@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:10:40 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 14:24:16 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	init_img(t_data *data, t_img *image, int width, int height)
 {

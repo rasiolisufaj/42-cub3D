@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:39 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 14:28:04 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:53:19 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	clean_exit(t_data *data, int code)
 		mlx_loop_end(data->mlx);
 		free(data->mlx);
 	}
-	// free_data(data);
 	exit(code);
 }
 

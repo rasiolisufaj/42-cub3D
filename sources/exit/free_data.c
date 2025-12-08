@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:44 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 15:49:58 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:17:30 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	free_tab(void **tab)
 {
@@ -61,12 +61,31 @@ static void	free_map(t_data *data)
 		free_tab((void **)data->map);
 }
 
+static void	free_mlx(t_data *data)
+{
+	if (data->win && data->mlx)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		data->win = NULL;
+	}
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		mlx_loop_end(data->mlx);
+		free(data->mlx);
+		data->mlx = NULL;
+	}
+}
+
 int	free_data(t_data *data)
 {
+	if (!data)
+		return (FAILURE);
+	free_mlx(data);
 	if (data->textures)
-	free_tab((void **)data->textures);
+		free_tab((void **)data->textures);
 	// if (data->texture_pixels)
-	// free_tab((void **)data->texture_pixels);
+	// 	free_tab((void **)data->texture_pixels);
 	free_texinfo(&data->texinfo);
 	free_map(data);
 	return (FAILURE);

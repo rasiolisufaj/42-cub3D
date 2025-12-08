@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:49 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 15:58:49 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:17:55 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	init_img_clean(t_img *img)
 {

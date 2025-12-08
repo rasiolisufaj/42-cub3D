@@ -6,11 +6,11 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:27:25 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static int	count_map_lines(t_data *data, char **file, int i)
 {
