@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:27:15 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:59:04 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static int	check_middle_row_edges(char **map, int row)
 	if (len == 0)
 		return (FAILURE);
 	if (map[row][len - 1] != '1')
-		return (FAILURE);
-	if (map[row][0] != '1')
 		return (FAILURE);
 	return (SUCCESS);
 }
