@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:49 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:27:52 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:32:01 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,20 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->index_end_of_map = 0;
 }
 
+static void	init_player(t_player *player)
+{
+	player->dir = '\0';
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
+}
+
 void	init_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
-	// init_player(&data->player);
+	init_player(&data->player);
 	init_texinfo(&data->texinfo);
 	data->map = NULL;
 	init_mapinfo(&data->mapinfo);
