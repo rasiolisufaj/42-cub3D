@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/05 22:26:15 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:28:47 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -41,7 +41,24 @@ enum			e_output
 	CONTINUE = 4
 };
 
+enum			e_tex_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
+
 // STRUCTURES
+
+typedef struct s_img
+{
+	void		*img;
+	int			*addr;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_img;
 
 typedef struct s_texinfo
 {
@@ -62,8 +79,16 @@ typedef struct s_texinfo
 typedef struct s_player
 {
 	char		dir;
+	int			move_x;
+	int			move_y;
+	int			rotate;
+	int			has_moved;
 	double		pos_x;
 	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct s_mapinfo
@@ -89,6 +114,7 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 	t_player	player;
+	t_img		minimap;
 	// t_ray		ray;
 	// t_img		minimap;
 }				t_data;
@@ -156,22 +182,30 @@ int				err_msg(char *detail, char *str, int code);
 int				err_msg_val(int detail, char *str, int code);
 
 /* free_data.c */
+void			free_tab(void **tab);
 int				free_data(t_data *data);
 
 /* exit.c */
-void			clean_exit(t_data *data, int code);
 int				quit_cub3d(t_data *data);
+void			clean_exit(t_data *data, int code);
 
 /* init_data.c */
 void			init_data(t_data *data);
+void			init_img_clean(t_img *img);
+
+/* init_mlx.c */
+void			init_mlx(t_data *data);
+void			init_texture_img(t_data *data, t_img *image, char *path);
+void			init_img(t_data *data, t_img *image, int width, int height);
 
 /* init_textures.c */
+void			init_textures(t_data *data);
 void			init_texinfo(t_texinfo *textures);
 
 /* init_mlx.c */
-
-/* free_data.c */
-void			free_tab(void **tab);
+void			init_mlx(t_data *data);
+void			init_texture_img(t_data *data, t_img *image, char *path);
+void			init_img(t_data *data, t_img *image, int width, int height);
 
 /* parsing_utils.c */
 bool			ft_is_space(char c);

@@ -6,11 +6,20 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:49 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 12:32:01 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:58:49 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	init_img_clean(t_img *img)
+{
+	img->addr = NULL;
+	img->img = NULL;
+	img->bits_per_pixel = 0;
+	img->size_line = 0;
+	img->endian = 0;
+}
 
 static void	init_mapinfo(t_mapinfo *mapinfo)
 {
@@ -26,8 +35,16 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 static void	init_player(t_player *player)
 {
 	player->dir = '\0';
+	player->has_moved = 0;
+	player->move_x = 0;
+	player->move_y = 0;
+	player->rotate = 0;
 	player->pos_x = 0.0;
 	player->pos_y = 0.0;
+	player->dir_x = 0.0;
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.0;
 }
 
 void	init_data(t_data *data)
