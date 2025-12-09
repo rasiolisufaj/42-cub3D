@@ -35,7 +35,8 @@ SRC = 	main.c \
 		init/init_mlx.c\
 		exit/exit.c \
 		exit/free_data.c \
-		error.c
+		error.c \
+		render/minimap_image.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects

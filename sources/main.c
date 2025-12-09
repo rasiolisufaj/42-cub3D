@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:20:13 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:30:43 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int	main(int ac, char **av)
 	init_mlx(&data);
 	init_textures(&data);
 	free_data(&data);
-	// mlx_loop(data.mlx);
 	return (0);
 }

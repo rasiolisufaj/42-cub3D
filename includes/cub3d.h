@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/09 14:24:16 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:36:29 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,9 @@ bool			ft_is_space(char c);
 int				is_whitespace(char c);
 int				wall_contains_map_chars(char *line);
 int				longest_map_line_len(t_mapinfo *mapinfo, int index);
+
+/*minimap_image.c*/
+int				handle_key(int key_code, t_data *data);
+
 
 #endif
