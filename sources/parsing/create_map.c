@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:45:32 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 		map_tab[i] = malloc(sizeof(char) * (mapinfo->width + 1));
 		if (!map_tab[i])
 			return (err_msg(NULL, ERR_MALLOC, FAILURE));
-		while (mapinfo->file[index] && mapinfo->file[index][j] != '\n')
+		while (mapinfo->file[index][j] && mapinfo->file[index][j] != '\n')
 		{
 			map_tab[i][j] = mapinfo->file[index][j];
 			j++;

@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:15 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:24:16 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ static int	check_position_is_valid(t_data *data, char **map_tab)
 
 	px = (int)data->player.pos_x;
 	py = (int)data->player.pos_y;
-	if (is_invalid_cell(map_tab, py - 1, px) == FAILURE)
+	if (is_valid_cell(map_tab, py - 1, px) == FAILURE)
 		return (FAILURE);
-	if (is_invalid_cell(map_tab, py + 1, px) == FAILURE)
+	if (is_valid_cell(map_tab, py + 1, px) == FAILURE)
 		return (FAILURE);
-	if (is_invalid_cell(map_tab, py, px - 1) == FAILURE)
+	if (is_valid_cell(map_tab, py, px - 1) == FAILURE)
 		return (FAILURE);
-	if (is_invalid_cell(map_tab, py, px + 1) == FAILURE)
+	if (is_valid_cell(map_tab, py, px + 1) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

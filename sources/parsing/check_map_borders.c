@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:24:16 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	skip_spaces(char **map, int i, int j)
 	return (j);
 }
 
-int	is_invalid_cell(char **map_tab, int row, int col)
+int	is_valid_cell(char **map_tab, int row, int col)
 {
 	if (row < 0 || col < 0)
 		return (FAILURE);
