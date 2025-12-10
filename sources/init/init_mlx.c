@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:10:40 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/09 17:43:36 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/10 19:28:53 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	init_mlx(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
 		clean_exit(data, err_msg("mlx", ERR_MLX_WIN, 1));
-	mlx_pixel_put(data->mlx, data->win, data->player.pos_x, data->player.pos_x, 0x00FFFFFF);
+	draw_map(data, 20);
+	draw_player(data, 10);
 	mlx_key_hook(data->win, handle_key, data);
+	// mlx_loop_hook(data->mlx, handle_key, data);
 	mlx_loop(data->mlx);
 	// if (BONUS)
 	// mlx_mouse_move()

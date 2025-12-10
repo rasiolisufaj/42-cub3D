@@ -36,7 +36,8 @@ SRC = 	main.c \
 		exit/exit.c \
 		exit/free_data.c \
 		error.c \
-		render/minimap_image.c
+		render/minimap_image.c \
+		render/minimap_render.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects

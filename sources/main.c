@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/09 17:30:43 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/10 17:22:25 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ static int	parse_args(t_data *data, char **av)
 		return (free_data(data));
 	if (check_textures_validity(data, &data->texinfo) == FAILURE)
 		return (free_data(data));
+	// init player dir
 	return (0);
+}
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
@@ -35,6 +47,8 @@ int	main(int ac, char **av)
 	init_data(&data);
 	if (parse_args(&data, av) != SUCCESS)
 		return (1);
+	// print_map(data.map);
+	printf("x = %f\ny = %f\n", data.player.pos_x, data.player.pos_y);
 	init_mlx(&data);
 	init_textures(&data);
 	free_data(&data);
