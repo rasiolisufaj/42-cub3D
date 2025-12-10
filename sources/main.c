@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 14:46:16 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:00:27 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	main(int ac, char **av)
 		return (1);
 	init_mlx(&data);
 	init_textures(&data);
+	listen_for_event_input(&data);
+	mlx_loop(data.mlx);
 	free_data(&data);
-	// mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,11 +6,14 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:38:39 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 14:44:43 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:34:13 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* Set player's view direction and camera plane based on
+N/S/E/W orientation. */
 
 static void	init_dir_north_south(t_player *player)
 {
