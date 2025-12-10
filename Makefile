@@ -31,8 +31,9 @@ SRC = 	main.c \
 		parsing/check_map_validity.c \
 		parsing/parsing_utils.c \
 		init/init_data.c \
-		init/init_textures.c\
-		init/init_mlx.c\
+		init/init_textures.c \
+		init/init_mlx.c \
+		movement/player_direction.c \
 		exit/exit.c \
 		exit/free_data.c \
 		error.c

@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:20:13 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:46:16 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	parse_args(t_data *data, char **av)
 		return (free_data(data));
 	if (check_textures_validity(data, &data->texinfo) == FAILURE)
 		return (free_data(data));
+	init_player_direction(data);
 	return (0);
 }
 
