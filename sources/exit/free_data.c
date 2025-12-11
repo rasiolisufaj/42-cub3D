@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:44 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:17:30 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:17:00 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,22 @@ static void	free_map(t_data *data)
 
 static void	free_mlx(t_data *data)
 {
-	if (data->win && data->mlx)
+	if (!data || !data->mlx)
+		return ;
+	if (data->win)
 	{
 		mlx_destroy_window(data->mlx, data->win);
 		data->win = NULL;
 	}
-	if (data->mlx)
+	if (data->minimap.img)
 	{
-		mlx_destroy_display(data->mlx);
-		mlx_loop_end(data->mlx);
-		free(data->mlx);
-		data->mlx = NULL;
+		mlx_destroy_image(data->mlx, data->minimap.img);
+		data->minimap.img = NULL;
 	}
+	mlx_destroy_display(data->mlx);
+	mlx_loop_end(data->mlx);
+	free(data->mlx);
+	data->mlx = NULL;
 }
 
 int	free_data(t_data *data)

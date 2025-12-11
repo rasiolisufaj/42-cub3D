@@ -33,7 +33,11 @@ SRC = 	main.c \
 		init/init_data.c \
 		init/init_textures.c \
 		init/init_mlx.c \
+		movement/input_handler.c \
 		movement/player_direction.c \
+		movement/player_move.c \
+		movement/player_position.c \
+		movement/player_rotate.c \
 		exit/exit.c \
 		exit/free_data.c \
 		error.c

@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 14:46:16 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:21:05 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	ft_bzero(&data, sizeof(t_data));
 	if (ac != 2)
 		return (err_msg("Usage", ERR_USAGE, 1));
 	init_data(&data);
@@ -38,7 +39,7 @@ int	main(int ac, char **av)
 		return (1);
 	init_mlx(&data);
 	init_textures(&data);
-	free_data(&data);
-	// mlx_loop(data.mlx);
+	listen_for_event_input(&data);
+	mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 14:45:23 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/11 13:36:00 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
+# define BONUS 0
+
+# ifndef O_DIRECTORY
+#  define O_DIRECTORY 00200000
+# endif
+
+# define MOVE_SPEED 0.0125
+# define ROT_SPEED 0.015
 
 enum			e_output
 {
@@ -215,5 +223,16 @@ int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 
 /* player_direction.c */
 void			init_player_direction(t_data *data);
+
+/* input_handler.c */
+void			listen_for_event_input(t_data *data);
+
+/* player_move.c */
+int				move_player(t_data *data);
+
+/* player_position.c */
+int				validate_move(t_data *data, double new_x, double new_y);
+/* player_rotate.c */
+int				rotate_player(t_data *data, double rotdirection);
 
 #endif
