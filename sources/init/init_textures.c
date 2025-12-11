@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:56 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:49 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:20:01 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	init_texinfo(t_texinfo *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->floor = 0;
-	textures->ceiling = 0;
+	textures->floor = NULL;
+	textures->ceiling = NULL;
 	textures->size = TEX_SIZE;
 	textures->step = 0.0;
 	textures->pos = 0.0;
