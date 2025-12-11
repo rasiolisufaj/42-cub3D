@@ -1,76 +1,101 @@
 #include "cub3d.h"
 
-void	draw_map(t_data *data, int size)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	int i;
-	int j;
-	int tile_size;
-	// int x_map;
-	// int y_map;
-	// int offset_x;
-	// int offset_y;
-	// int c_y;
-	// int c_x;
+	char	*dst;
 
-	tile_size = 20;
-	// c_y = 6.5 * tile_size;
-	// c_x = 4 * tile_size;
+	dst = (char *)data->minimap.addr + (y * data->minimap.size_line + x
+			* (data->minimap.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	draw_map_side(int width, int height, t_data *data, int tile_size)
+{
+	int	i;
+	int	j;
+
 	i = 0;
-	// offset_x = c_x - data->player.pos_x;
-	// offset_y = c_y - data->player.pos_y;
-	// x_map = data->player.pos_x * tile_size;
-	// y_map = data->player.pos_y * tile_size;
-	// printf("x = %d\ny = %d\n", x_map, y_map);
-	// printf("%d\n", data->mapinfo.height);
-	// printf("%d\n", data->mapinfo.width);
-	while (i < 14)
+	j = 0;
+	(void)tile_size;
+	while (i < height)
 	{
 		j = 0;
-		while (j < 8)
+		while (j < width)
 		{
-			if ((i == 0 || j == 0) || (i == 13 || j == 7))
-			{
-				draw_pixel(data, i * tile_size, j * tile_size, size, 0x00FFFFFF);
-			}
-			j++;
+			if ((i == 0 || j == 0) || (i >= height - 5 || j >= width - 5))
+				draw_pixel(data, j , i, 5, 0x00FFFFFF);
+			j += 5;
 		}
-		i++;
+		i += 5;
 	}
-	// // data->map_width = 14, data->map_height = 8 (Exemples)
-	// int map_height = 14;
-	// int map_width = 8;
-	// int y_map = 0;
-	// while (y_map < map_height) // Boucle sur les lignes (Y)
-	// {
-	// 	int x_map = 0;
-	// 	while (x_map < map_width) // Boucle sur les colonnes (X)
-	// 	{
-	// 		// 1. Calculer la position du coin supérieur gauche du bloc (x_map, y_map) après translation
-	// 		int X_final = (x_map * tile_size) + offset_x;
-	// 		int Y_final = (y_map * tile_size) + offset_y;
+}
 
-	// 		// 2. Vérifier si le bloc est un mur (ou un espace vide)
-	// 		if (data->map[y_map][x_map] == '1' || data->map[y_map][x_map] == '0')
-	// 		{
-	// 			// 3. Dessiner le bloc avec Clipping
-	// 			// Appeler une fonction qui dessine le carré en respectant les limites du HUD
-	// 			draw_clipped_tile(data, X_final, Y_final, tile_size);
-	// 		}
-	// 		x_map++;
+void	draw_map(t_data *data, int size)
+{
+	int		tile_size;
+	float	x_world;
+	float	y_world;
+	int		offset_x;
+	int		offset_y;
+	int		c_y;
+	int		c_x;
+	int		x_final;
+	int		y_final;
+
+	(void)size;
+	tile_size = 1;
+	c_y = 140;
+	c_x = 80;
+	x_world = data->player.pos_x * tile_size;
+	y_world = data->player.pos_y * tile_size;
+	offset_x = (int)(c_x - x_world);
+	offset_y = (int)(c_y - y_world);
+	x_final = (x_world * tile_size) + offset_x;
+	y_final = (y_world * tile_size) + offset_y;
+	(void)x_final;
+	(void)y_final;
+	data->minimap.img = mlx_new_image(data->mlx, 280, 160);
+	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
+			&data->minimap.bits_per_pixel, &data->minimap.size_line,
+			&data->minimap.endian);
+	draw_map_side(280, 160, data, tile_size);
+	draw_player(data, 5);
+	// while (i < 14)
+	// {
+	// 	j = 0;
+	// 	while (j < 8)
+	// 	{
+	// 		if ((i == 0 || j == 0) || (i == 13 || j == 7))
+	// 			draw_pixel(data, i * tile_size, j * tile_size, 1,
+	// 						0x00FFFFFF);
+	// 		j++;
 	// 	}
-	// 	y_map++;
+	// 	i++;
 	// }
+	mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 0, 0);
 }
 
 void	draw_player(t_data *data, int size)
 {
-    int tile_size;
-    int center_x;
-    int center_y;
+	int	tile_size;
+	int	center_x;
+	int	center_y;
 
-    tile_size = 20;
-    center_x = 6.5 * tile_size;
-    center_y = 4 * tile_size;
-    
-    draw_pixel(data, center_x, center_y, size, 0x00FF0000);
+	tile_size = 20;
+	center_x = 6.5 * tile_size;
+	center_y = 4 * tile_size;
+	draw_pixel(data, center_x, center_y, size, 0x00FF0000);
 }
+
+// void	draw_map(t_data *data, int size)
+// {
+// 	data->minimap.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
+// 			&data->minimap.bits_per_pixel, &data->minimap.size_line,
+// 			&data->minimap.endian);
+// 	my_mlx_pixel_put(data, 200, 200, 0x00FF0000);
+// 	mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 0, 0);
+// 	// printf("%d\n", data->mapinfo.width);
+// 	// printf("%d\n", data->mapinfo.height);
+// 	(void)size;
+// }

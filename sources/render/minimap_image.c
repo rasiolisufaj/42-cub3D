@@ -11,7 +11,7 @@ void	draw_pixel(t_data *data, int x, int y, int size, int color)
 		j = 0;
 		while (j < size)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, color);
+			my_mlx_pixel_put(data, x + i, y + j, color);
 			j++;
 		}
 		i++;
@@ -20,6 +20,7 @@ void	draw_pixel(t_data *data, int x, int y, int size, int color)
 
 int handle_key(int key_code, t_data *data)
 {
+    mlx_destroy_image(data->mlx, data->minimap.img);
     mlx_clear_window(data->mlx, data->win);
     if (key_code == 65307)
     {
@@ -47,6 +48,6 @@ int handle_key(int key_code, t_data *data)
         printf("D\n");
     }
     draw_map(data, 20);
-    draw_player(data, 10);
+    draw_player(data, 5);
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 20:45:02 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/11 15:56:33 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,6 @@ typedef struct s_mapinfo
 	int			index_end_of_map;
 }				t_mapinfo;
 
-// typedef struct s_minimap
-// {
-// 	double x;
-// 	double y;
-// 	int x_world;
-// 	int y_world;
-// }		t_minimap;
-
 typedef struct s_data
 {
 	void		*mlx;
@@ -124,9 +116,8 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 	t_player	player;
-	t_img		minimap;
 	// t_ray		ray;
-	// t_img		minimap;
+	t_img		minimap;
 }				t_data;
 
 /* ERROR MESSAGES*/
@@ -228,6 +219,7 @@ int				handle_key(int key_code, t_data *data);
 void			draw_pixel(t_data *data, int x, int y, int size, int color);
 void			draw_map(t_data *data, int size);
 void			draw_player(t_data *data, int size);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 
 #endif

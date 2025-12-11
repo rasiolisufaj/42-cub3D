@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/10 17:22:25 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/11 15:02:26 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	main(int ac, char **av)
 	if (parse_args(&data, av) != SUCCESS)
 		return (1);
 	// print_map(data.map);
-	printf("x = %f\ny = %f\n", data.player.pos_x, data.player.pos_y);
+	// printf("x = %f\ny = %f\n", data.player.pos_x, data.player.pos_y);
 	init_mlx(&data);
 	init_textures(&data);
+	mlx_destroy_window(data.mlx, data.win);
 	free_data(&data);
 	return (0);
 }
