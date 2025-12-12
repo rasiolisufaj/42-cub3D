@@ -29,22 +29,22 @@ int handle_key(int key_code, t_data *data)
     }
     if (key_code == 119) // W
     {
-        data->player.pos_y -= 5; 
+        data->player.pos_y -= 1; 
         printf("W\n");
     }
     if (key_code == 97) // A
     {
-        data->player.pos_x -= 5;
+        data->player.pos_x -= 1;
         printf("A\n");
     }
     if (key_code == 115) // S
     {
-       data->player.pos_y += 5;
+       data->player.pos_y += 1;
        printf("S\n");
     }
     if (key_code == 100) // D
     {
-        data->player.pos_x += 5;
+        data->player.pos_x += 1;
         printf("D\n");
     }
     draw_map(data, 20);

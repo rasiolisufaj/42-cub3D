@@ -33,57 +33,55 @@ void	draw_map_side(int width, int height, t_data *data, int tile_size)
 void	draw_map(t_data *data, int size)
 {
 	int		tile_size;
-	float	x_world;
-	float	y_world;
 	int		offset_x;
 	int		offset_y;
 	int		c_y;
 	int		c_x;
 	int		x_final;
 	int		y_final;
+	int x = 0;
+	int y = 0;
 
 	(void)size;
-	tile_size = 1;
-	c_y = 140;
-	c_x = 80;
-	x_world = data->player.pos_x * tile_size;
-	y_world = data->player.pos_y * tile_size;
-	offset_x = (int)(c_x - x_world);
-	offset_y = (int)(c_y - y_world);
-	x_final = (x_world * tile_size) + offset_x;
-	y_final = (y_world * tile_size) + offset_y;
-	(void)x_final;
-	(void)y_final;
+	tile_size = 25;
+	c_y = 80;
+	c_x = 140;
+	offset_x = (int)(c_x - (data->player.pos_x * tile_size));
+	offset_y = (int)(c_y - (data->player.pos_y * tile_size));
 	data->minimap.img = mlx_new_image(data->mlx, 280, 160);
 	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
 			&data->minimap.bits_per_pixel, &data->minimap.size_line,
 			&data->minimap.endian);
 	draw_map_side(280, 160, data, tile_size);
+	while (y < data->mapinfo.height)
+	{
+		x = 0;
+		while (x < data->mapinfo.width)
+		{
+			if (data->map[y][x] == '1')
+			{
+				x_final = (x * tile_size) + offset_x;
+				y_final = (y * tile_size) + offset_y;
+				// x_final = (data->player.pos_x * tile_size);
+				// y_final = (data->player.pos_y * tile_size);
+				if (x_final >= 0 && x_final < 280 && y_final >= 0 && y_final < 160)
+					draw_pixel(data, x_final, y_final, tile_size, 0x00FFFFFF);
+			}
+			x++;
+		}
+		y++;
+	}
 	draw_player(data, 5);
-	// while (i < 14)
-	// {
-	// 	j = 0;
-	// 	while (j < 8)
-	// 	{
-	// 		if ((i == 0 || j == 0) || (i == 13 || j == 7))
-	// 			draw_pixel(data, i * tile_size, j * tile_size, 1,
-	// 						0x00FFFFFF);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 	mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 0, 0);
 }
 
 void	draw_player(t_data *data, int size)
 {
-	int	tile_size;
 	int	center_x;
 	int	center_y;
 
-	tile_size = 20;
-	center_x = 6.5 * tile_size;
-	center_y = 4 * tile_size;
+	center_x = 140;
+	center_y = 80;
 	draw_pixel(data, center_x, center_y, size, 0x00FF0000);
 }
 
