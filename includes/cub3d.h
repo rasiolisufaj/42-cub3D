@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 15:56:33 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/12 14:22:15 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 /*minimap_image.c*/
 int				handle_key(int key_code, t_data *data);
 void			draw_pixel(t_data *data, int x, int y, int size, int color);
-void			draw_map(t_data *data, int size);
+void			draw_map(t_data *data, int tile_size);
 void			draw_player(t_data *data, int size);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
