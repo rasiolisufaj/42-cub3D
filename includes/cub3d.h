@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 13:36:00 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/13 18:30:24 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,8 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 	t_player	player;
-	t_img		minimap;
+	t_img		minimap_img;
 	// t_ray		ray;
-	// t_img		minimap;
 }				t_data;
 
 /* ERROR MESSAGES*/

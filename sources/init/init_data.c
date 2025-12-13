@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:49 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:17:55 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/13 18:30:50 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_data(t_data *data)
 	init_texinfo(&data->texinfo);
 	data->map = NULL;
 	init_mapinfo(&data->mapinfo);
-	// init_img_clean(&data->minimap);
+	init_img_clean(&data->minimap_img);
 	data->texture_pixels = NULL;
 	data->textures = NULL;
 }
