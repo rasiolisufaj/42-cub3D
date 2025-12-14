@@ -12,6 +12,24 @@
 
 #include "cub3d.h"
 
+int	detect_wall(double y, double x, t_data *data)
+{
+	double	buffer;
+
+	buffer = 0.25;
+	if (data->map[(int)y][(int)x] == '1')
+		return (1);
+	if (data->map[(int)(y + buffer)][(int)(x + buffer)] == '1')
+		return (1);
+	if (data->map[(int)(y - buffer)][(int)(x + buffer)] == '1')
+		return (1);
+	if (data->map[(int)(y + buffer)][(int)(x - buffer)] == '1')
+		return (1);
+	if (data->map[(int)(y - buffer)][(int)(x - buffer)] == '1')
+		return (1);
+	return (0);
+}
+
 static bool	is_walkable_tile(t_data *data, double x, double y)
 {
 	int	mx;
@@ -44,7 +62,7 @@ static bool	is_valid_position(t_data *data, double x, double y)
 
 int	validate_move(t_data *data, double new_x, double new_y)
 {
-	int	moved;
+	int moved;
 
 	moved = 0;
 	if (is_valid_position(data, new_x, data->player.pos_y))

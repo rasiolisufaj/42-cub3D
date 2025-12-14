@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -31,7 +31,9 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
+# ifndef BONUS
 # define BONUS 0
+# endif
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
@@ -119,11 +121,13 @@ typedef struct s_data
 	char		**map;
 	int			**textures;
 	int			**texture_pixels;
+	double		x;
+	double		y;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 	t_player	player;
-	t_img		minimap_img;
 	// t_ray		ray;
+	t_img		minimap;
 }				t_data;
 
 /* ERROR MESSAGES*/
@@ -220,18 +224,30 @@ int				is_whitespace(char c);
 int				wall_contains_map_chars(char *line);
 int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 
-/* player_direction.c */
-void			init_player_direction(t_data *data);
+/*minimap_image.c*/
+int				handle_key(int key_code, t_data *data);
+void			draw_pixel(t_data *data, int x, int y, int size, int color);
+void			draw_map(t_data *data, int tile_size);
+void			draw_player(t_data *data, int size);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-/* input_handler.c */
-void			listen_for_event_input(t_data *data);
+/*player_rotate.c*/
+int	rotate_player(t_data *data, double rotdirection);
 
-/* player_move.c */
-int				move_player(t_data *data);
+/*player_position.c*/
+int	validate_move(t_data *data, double new_x, double new_y);
 
-/* player_position.c */
-int				validate_move(t_data *data, double new_x, double new_y);
-/* player_rotate.c */
-int				rotate_player(t_data *data, double rotdirection);
+/*player_move.c*/
+int	move_player(t_data *data);
+
+/*player_direction.c*/
+void	init_player_direction(t_data *data);
+
+/*input_handler.c*/
+void	listen_for_event_input(t_data *data);
+
+/*detect wall*/
+int  detect_wall(double y, double x, t_data *data);
+
 
 #endif

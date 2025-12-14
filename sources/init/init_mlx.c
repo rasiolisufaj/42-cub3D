@@ -43,6 +43,9 @@ void	init_mlx(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
 		clean_exit(data, err_msg("mlx", ERR_MLX_WIN, 1));
+	draw_map(data, 50);
+	draw_player(data, 10);
+	// mlx_key_hook(data->win, handle_key, data);
 	// if (BONUS)
 	// mlx_mouse_move()
 	return ;
