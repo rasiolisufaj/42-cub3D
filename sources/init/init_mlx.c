@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:10:40 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/12 14:23:07 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/14 10:53:27 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	init_mlx(t_data *data)
 		clean_exit(data, err_msg("mlx", ERR_MLX_WIN, 1));
 	draw_map(data, 40);
 	draw_player(data, 5);
-	mlx_key_hook(data->win, handle_key, data);
-	// mlx_loop_hook(data->mlx, handle_key, data);
+	listen_for_event_input(data);
+	// mlx_key_hook(data->win, handle_key, data);
 	mlx_loop(data->mlx);
 	// if (BONUS)
 	// mlx_mouse_move()

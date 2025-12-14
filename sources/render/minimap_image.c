@@ -17,6 +17,7 @@ void	draw_pixel(t_data *data, int x, int y, int size, int color)
 		i++;
 	}
 }
+
 int  detect_wall(float y, float x, t_data *data)
 {
     if (data->map[(int)y][(int)x] == '1')

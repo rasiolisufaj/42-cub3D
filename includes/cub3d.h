@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/12 14:22:15 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/14 11:28:25 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
+# define BONUS 0
+
+# ifndef O_DIRECTORY
+#  define O_DIRECTORY 00200000
+# endif
+
+# define MOVE_SPEED 0.0125
+# define ROT_SPEED 0.015
 
 enum			e_output
 {
@@ -220,6 +228,24 @@ void			draw_pixel(t_data *data, int x, int y, int size, int color);
 void			draw_map(t_data *data, int tile_size);
 void			draw_player(t_data *data, int size);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/*player_rotate.c*/
+int	rotate_player(t_data *data, double rotdirection);
+
+/*player_position.c*/
+int	validate_move(t_data *data, double new_x, double new_y);
+
+/*player_move.c*/
+int	move_player(t_data *data);
+
+/*player_direction.c*/
+void	init_player_direction(t_data *data);
+
+/*input_handler.c*/
+void	listen_for_event_input(t_data *data);
+
+/*detect wall*/
+int  detect_wall(float y, float x, t_data *data);
 
 
 #endif

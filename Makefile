@@ -37,7 +37,13 @@ SRC = 	main.c \
 		exit/free_data.c \
 		error.c \
 		render/minimap_image.c \
-		render/minimap_render.c
+		render/minimap_render.c \
+		movement/input_handler.c \
+		movement/player_direction.c \
+		movement/player_move.c \
+		movement/player_position.c \
+		movement/player_rotate.c \
+		
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
