@@ -13,9 +13,15 @@ static int	key_press_handler(int key, t_data *data)
     if (key == XK_Escape)
         quit_cub3d(data);
     if (key == XK_Left)
+    {
+        printf("Rotate Left\n");
         data->player.rotate = -1;
+    }
     if (key == XK_Right)
+    {
+        printf("Rotate Right\n");
         data->player.rotate = 1;
+    }
     if (key == XK_w || key == XK_W)
         data->player.move_y = -1;  // Set flag
     if (key == XK_s || key == XK_S)
@@ -48,14 +54,14 @@ static int render_loop(t_data *data)
     float new_y;
     float new_x;
 
-    speed = 0.010;
+    speed = 0.003;
     mlx_destroy_image(data->mlx, data->minimap.img);
     if (data->player.move_y != 0)
     {
         new_y = data->player.pos_y + (data->player.move_y * speed);
         if (validate_move(data, data->player.pos_x, new_y) == 1)
         {
-            if (detect_wall(new_y, data->player.pos_x, data) == 1)
+            if (detect_wall(new_y, data->player.pos_x, data) == 0)
                 data->player.pos_y = new_y;
         }
     }
@@ -64,11 +70,11 @@ static int render_loop(t_data *data)
         new_x = data->player.pos_x + (data->player.move_x * speed);
         if (validate_move(data, new_x, data->player.pos_y) == 1)
         {
-            if (detect_wall(data->player.pos_y, new_x, data) == 1)
+            if (detect_wall(data->player.pos_y, new_x, data) == 0)
                 data->player.pos_x = new_x;
         }
     }
-    draw_map(data, 40);
+    draw_map(data, 50);
     draw_player(data, 10);
     return 0;
 }

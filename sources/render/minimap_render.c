@@ -128,7 +128,7 @@ void	draw_player(t_data *data, int size)
 	int	center_x;
 	int	center_y;
 
-	center_x = 140;
-	center_y = 80;
+	center_x = 135;
+	center_y = 75;
 	draw_pixel(data, center_x, center_y, size, 0x00FF0000);
 }

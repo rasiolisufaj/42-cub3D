@@ -6,7 +6,7 @@
 /*   By: jchiu <jchiu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 11:28:25 by jchiu            ###   ########.fr       */
+/*   Updated: 2025/12/14 14:44:23 by jchiu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
+# ifndef BONUS
 # define BONUS 0
+# endif
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000

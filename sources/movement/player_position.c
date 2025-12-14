@@ -1,5 +1,23 @@
 #include "cub3d.h"
 
+int  detect_wall(float y, float x, t_data *data)
+{
+    float buffer;
+
+    buffer = 0.25;
+    if (data->map[(int)y][(int)x] == '1')
+        return 1;
+    if (data->map[(int)(y + buffer)][(int)(x + buffer)] == '1')
+        return 1;
+    if (data->map[(int)(y - buffer)][(int)(x + buffer)] == '1')
+        return 1;
+    if (data->map[(int)(y + buffer)][(int)(x - buffer)] == '1')
+        return 1;
+    if (data->map[(int)(y - buffer)][(int)(x - buffer)] == '1')
+        return 1;
+    return 0;
+}
+
 static bool	is_walkable_tile(t_data *data, double x, double y)
 {
 	int	mx;
