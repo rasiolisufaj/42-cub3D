@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 22:05:16 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 22:05:16 by raisufaj         ###   ########.fr       */
+/*   Created: 2025/12/14 23:21:31 by raisufaj          #+#    #+#             */
+/*   Updated: 2025/12/14 23:21:31 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,29 @@ void	init_minimap_image(t_data *data)
 			&data->minimap.endian);
 }
 
-void	draw_pixel(t_data *data, int x, int y, int size, int color)
+t_draw_square	draw_init(int x, int y, int size, int color)
+{
+	t_draw_square	p;
+
+	p.x = x;
+	p.y = y;
+	p.size = size;
+	p.color = color;
+	return (p);
+}
+
+void	draw_square(t_data *data, t_draw_square p)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < p.size)
 	{
 		j = 0;
-		while (j < size)
+		while (j < p.size)
 		{
-			my_mlx_pixel_put(data, x + i, y + j, color);
+			my_mlx_pixel_put(data, p.x + i, p.y + j, p.color);
 			j++;
 		}
 		i++;
@@ -41,5 +52,11 @@ void	draw_pixel(t_data *data, int x, int y, int size, int color)
 
 void	draw_player(t_data *data, int size)
 {
-	draw_pixel(data, 135, 75, size, PLAYER_COLOR);
+	t_draw_square	p;
+
+	p.x = 135;
+	p.y = 75;
+	p.size = size;
+	p.color = PLAYER_COLOR;
+	draw_square(data, p);
 }

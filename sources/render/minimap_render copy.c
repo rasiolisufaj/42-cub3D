@@ -55,7 +55,7 @@ static void	draw_border_right(t_data *data, int x_final, int y_final,
 	}
 }
 
-static void	draw_tile_borders(t_data *data, int x_final, int y_final,
+static void	draw_square_borders(t_data *data, int x_final, int y_final,
 		int tile_size)
 {
 	draw_border_top(data, x_final, y_final, tile_size);
@@ -76,7 +76,7 @@ void	draw_map_side(int width, int height, t_data *data)
 		while (j < width)
 		{
 			if ((i == 0 || j == 0) || (i >= height - 5 || j >= width - 5))
-				draw_pixel(data, j, i, 5, 0x00FFFFFF);
+				draw_square(data, j, i, 5, 0x00FFFFFF);
 			j += 5;
 		}
 		i += 5;
@@ -89,9 +89,9 @@ static void	render_tile(t_data *data, int x, int y, int x_final, int y_final,
 	if (x_final >= -tile_size && x_final < 280 && y_final >= -tile_size
 		&& y_final < 160)
 	{
-		draw_tile_borders(data, x_final, y_final, tile_size);
+		draw_square_borders(data, x_final, y_final, tile_size);
 		if (data->map[y][x] == '1')
-			draw_pixel(data, x_final, y_final, tile_size, 0x00FFFFFF);
+			draw_square(data, x_final, y_final, tile_size, 0x00FFFFFF);
 	}
 }
 
@@ -147,7 +147,7 @@ void	draw_player(t_data *data, int size)
 
 	center_x = 135;
 	center_y = 75;
-	draw_pixel(data, center_x, center_y, size, 0x00FF0000);
+	draw_square(data, center_x, center_y, size, 0x00FF0000);
 }
 
 static void	update_player_movement_y(t_data *data, double speed)

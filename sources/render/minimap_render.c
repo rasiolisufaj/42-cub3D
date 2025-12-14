@@ -2,20 +2,24 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap_render.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 21:55:29 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 21:55:29 by raisufaj         ###   ########.fr       */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
+/*   Created: 2025/12/14 23:22:32 by raisufaj          #+#    #+#             */
+/*   Updated: 2025/12/14 23:22:32 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
 static void	draw_minimap_border(t_data *data)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < MINIMAP_HEIGHT)
@@ -25,24 +29,25 @@ static void	draw_minimap_border(t_data *data)
 		{
 			if (i == 0 || j == 0 || i >= MINIMAP_HEIGHT - MINIMAP_BORDER
 				|| j >= MINIMAP_WIDTH - MINIMAP_BORDER)
-				draw_pixel(data, j, i, MINIMAP_BORDER, MINIMAP_COLOR);
+				draw_square(data, draw_init(j, i, MINIMAP_BORDER,
+						MINIMAP_COLOR));
 			j += MINIMAP_BORDER;
 		}
 		i += MINIMAP_BORDER;
 	}
 }
 
-static void	draw_tile_border(t_data *data, int x, int y, int size)
+static void	draw_square_border(t_data *data, t_draw_square p)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (i < size)
+	while (i < p.size)
 	{
-		my_mlx_pixel_put(data, x + i, y, MINIMAP_COLOR);
-		my_mlx_pixel_put(data, x + i, y + size - 1, MINIMAP_COLOR);
-		my_mlx_pixel_put(data, x, y + i, MINIMAP_COLOR);
-		my_mlx_pixel_put(data, x + size - 1, y + i, MINIMAP_COLOR);
+		my_mlx_pixel_put(data, p.x + i, p.y, MINIMAP_COLOR);
+		my_mlx_pixel_put(data, p.x + i, p.y + p.size - 1, MINIMAP_COLOR);
+		my_mlx_pixel_put(data, p.x, p.y + i, MINIMAP_COLOR);
+		my_mlx_pixel_put(data, p.x + p.size - 1, p.y + i, MINIMAP_COLOR);
 		i++;
 	}
 }
@@ -50,10 +55,11 @@ static void	draw_tile_border(t_data *data, int x, int y, int size)
 static void	draw_map_tiles(t_data *data, int tile_size, int offset_x,
 		int offset_y)
 {
-	int	x;
-	int	y;
-	int	x_final;
-	int	y_final;
+	int x;
+	int y;
+	int x_final;
+	int y_final;
+	t_draw_square p;
 
 	y = 0;
 	while (y < data->mapinfo.height)
@@ -65,10 +71,10 @@ static void	draw_map_tiles(t_data *data, int tile_size, int offset_x,
 			y_final = (y * tile_size) + offset_y;
 			if (is_tile_visible(x_final, y_final, tile_size))
 			{
-				draw_tile_border(data, x_final, y_final, tile_size);
+				p = draw_init(x_final, y_final, tile_size, MINIMAP_COLOR);
+				draw_square_border(data, p);
 				if (data->map[y][x] == '1')
-					draw_pixel(data, x_final, y_final, tile_size,
-						MINIMAP_COLOR);
+					draw_square(data, p);
 			}
 			x++;
 		}
@@ -78,8 +84,8 @@ static void	draw_map_tiles(t_data *data, int tile_size, int offset_x,
 
 void	draw_map(t_data *data, int tile_size)
 {
-	int	offset_x;
-	int	offset_y;
+	int offset_x;
+	int offset_y;
 
 	offset_x = (int)(140 - (data->player.pos_x * tile_size));
 	offset_y = (int)(80 - (data->player.pos_y * tile_size));
@@ -92,9 +98,9 @@ void	draw_map(t_data *data, int tile_size)
 
 int	render_minimap(t_data *data)
 {
-	double	speed;
-	double	new_x;
-	double	new_y;
+	double speed;
+	double new_x;
+	double new_y;
 
 	speed = 0.003;
 	if (data->minimap.img)

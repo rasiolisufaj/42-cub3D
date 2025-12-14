@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 21:58:06 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 23:25:46 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ typedef struct s_img
 	int			size_line;
 	int			endian;
 }				t_img;
+
+typedef struct s_draw_square
+{
+	int			x;
+	int			y;
+	int			size;
+	int			color;
+}				t_draw_square;
 
 typedef struct s_texinfo
 {
@@ -232,11 +240,12 @@ int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 
 /*minimap_image.c*/
 int				handle_key(int key_code, t_data *data);
-void			draw_pixel(t_data *data, int x, int y, int size, int color);
+void			draw_square(t_data *data, t_draw_square p);
 void			draw_map(t_data *data, int tile_size);
 void			init_minimap_image(t_data *data);
 void			draw_player(t_data *data, int size);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_draw_square	draw_init(int x, int y, int size, int color);
 
 /*player_rotate.c*/
 int				rotate_player(t_data *data, double rotdirection);
