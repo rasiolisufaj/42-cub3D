@@ -6,11 +6,27 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 12:41:30 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 13:16:06 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:44:19 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	detect_wall(double x, double y, t_data *data)
+{
+	int	map_x;
+	int	map_y;
+
+	if (!data || !data->map)
+		return (1);
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_y < 0 || map_y >= data->mapinfo.height)
+		return (1);
+	if (map_x < 0 || map_x >= (int)ft_strlen(data->map[map_y]))
+		return (1);
+	return (data->map[map_y][map_x] == '1');
+}
 
 static bool	is_walkable_tile(t_data *data, double x, double y)
 {

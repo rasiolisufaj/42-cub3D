@@ -38,6 +38,10 @@ SRC = 	main.c \
 		movement/player_move.c \
 		movement/player_position.c \
 		movement/player_rotate.c \
+		render/image_utils.c \
+		render/render_utils.c \
+		render/minimap_image.c \
+		render/minimap_render.c \
 		exit/exit.c \
 		exit/free_data.c \
 		error.c

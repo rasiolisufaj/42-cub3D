@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:44 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 14:17:00 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 19:01:42 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	free_mlx(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		data->win = NULL;
 	}
-	if (data->minimap.img)
+	if (data->minimap.img != NULL)
 	{
 		mlx_destroy_image(data->mlx, data->minimap.img);
 		data->minimap.img = NULL;
