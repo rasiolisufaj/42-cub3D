@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:25:39 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 14:10:41 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:47:10 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ static int	render_loop(t_data *data)
 	double	new_x;
 
 	speed = 0.003;
-	mlx_destroy_image(data->mlx, data->minimap.img);
+	if (data->minimap.img)
+		mlx_destroy_image(data->mlx, data->minimap.img);
+	data->minimap.img = NULL;
 	if (data->player.move_y != 0)
 	{
 		new_y = data->player.pos_y + (data->player.move_y * speed);

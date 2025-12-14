@@ -6,28 +6,26 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 12:41:30 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/11 13:16:06 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:44:19 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	detect_wall(double y, double x, t_data *data)
+int	detect_wall(double x, double y, t_data *data)
 {
-	double	buffer;
+	int	map_x;
+	int	map_y;
 
-	buffer = 0.25;
-	if (data->map[(int)y][(int)x] == '1')
+	if (!data || !data->map)
 		return (1);
-	if (data->map[(int)(y + buffer)][(int)(x + buffer)] == '1')
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_y < 0 || map_y >= data->mapinfo.height)
 		return (1);
-	if (data->map[(int)(y - buffer)][(int)(x + buffer)] == '1')
+	if (map_x < 0 || map_x >= (int)ft_strlen(data->map[map_y]))
 		return (1);
-	if (data->map[(int)(y + buffer)][(int)(x - buffer)] == '1')
-		return (1);
-	if (data->map[(int)(y - buffer)][(int)(x - buffer)] == '1')
-		return (1);
-	return (0);
+	return (data->map[map_y][map_x] == '1');
 }
 
 static bool	is_walkable_tile(t_data *data, double x, double y)
@@ -62,7 +60,7 @@ static bool	is_valid_position(t_data *data, double x, double y)
 
 int	validate_move(t_data *data, double new_x, double new_y)
 {
-	int moved;
+	int	moved;
 
 	moved = 0;
 	if (is_valid_position(data, new_x, data->player.pos_y))

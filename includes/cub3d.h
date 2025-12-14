@@ -6,15 +6,15 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/13 18:30:24 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:41:11 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -32,7 +32,7 @@
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
 # ifndef BONUS
-# define BONUS 0
+#  define BONUS 0
 # endif
 
 # ifndef O_DIRECTORY
@@ -232,22 +232,21 @@ void			draw_player(t_data *data, int size);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*player_rotate.c*/
-int	rotate_player(t_data *data, double rotdirection);
+int				rotate_player(t_data *data, double rotdirection);
 
 /*player_position.c*/
-int	validate_move(t_data *data, double new_x, double new_y);
+int				validate_move(t_data *data, double new_x, double new_y);
 
 /*player_move.c*/
-int	move_player(t_data *data);
+int				move_player(t_data *data);
 
 /*player_direction.c*/
-void	init_player_direction(t_data *data);
+void			init_player_direction(t_data *data);
 
 /*input_handler.c*/
-void	listen_for_event_input(t_data *data);
+void			listen_for_event_input(t_data *data);
 
 /*detect wall*/
-int  detect_wall(double y, double x, t_data *data);
-
+int				detect_wall(double x, double y, t_data *data);
 
 #endif
