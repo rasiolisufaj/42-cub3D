@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:10:40 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:54:04 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	init_mlx(t_data *data)
 		clean_exit(data, err_msg("mlx", ERR_MLX_WIN, 1));
 	draw_map(data, 50);
 	draw_player(data, 10);
-	// mlx_key_hook(data->win, handle_key, data);
 	// if (BONUS)
 	// mlx_mouse_move()
 	return ;

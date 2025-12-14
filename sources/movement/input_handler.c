@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:25:39 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 20:47:10 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 21:02:34 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,45 +53,11 @@ static int	key_release_handler(int key, t_data *data)
 
 // Handle Mouse Function
 
-static int	render_loop(t_data *data)
-{
-	double	speed;
-	double	new_y;
-	double	new_x;
-
-	speed = 0.003;
-	if (data->minimap.img)
-		mlx_destroy_image(data->mlx, data->minimap.img);
-	data->minimap.img = NULL;
-	if (data->player.move_y != 0)
-	{
-		new_y = data->player.pos_y + (data->player.move_y * speed);
-		if (validate_move(data, data->player.pos_x, new_y) == 1)
-		{
-			if (detect_wall(new_y, data->player.pos_x, data) == 0)
-				data->player.pos_y = new_y;
-		}
-	}
-	if (data->player.move_x != 0)
-	{
-		new_x = data->player.pos_x + (data->player.move_x * speed);
-		if (validate_move(data, new_x, data->player.pos_y) == 1)
-		{
-			if (detect_wall(data->player.pos_y, new_x, data) == 0)
-				data->player.pos_x = new_x;
-		}
-	}
-	draw_map(data, 50);
-	draw_player(data, 10);
-	return (0);
-}
-
 void	listen_for_event_input(t_data *data)
 {
 	mlx_hook(data->win, ClientMessage, NoEventMask, quit_cub3d, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, key_release_handler, data);
-	mlx_loop_hook(data->mlx, render_loop, data);
 	// if (BONUS)
 	// mlx_hook -> handle mouse motion
 }

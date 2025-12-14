@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 20:41:11 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/14 21:58:06 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
+# define MINIMAP_WIDTH 280
+# define MINIMAP_HEIGHT 160
+# define MINIMAP_BORDER 5
+# define MINIMAP_COLOR 0x00FFFFFF
+# define PLAYER_COLOR 0x00FF0000
+
 # ifndef BONUS
 #  define BONUS 0
 # endif
@@ -228,6 +234,7 @@ int				longest_map_line_len(t_mapinfo *mapinfo, int index);
 int				handle_key(int key_code, t_data *data);
 void			draw_pixel(t_data *data, int x, int y, int size, int color);
 void			draw_map(t_data *data, int tile_size);
+void			init_minimap_image(t_data *data);
 void			draw_player(t_data *data, int size);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -244,9 +251,13 @@ int				move_player(t_data *data);
 void			init_player_direction(t_data *data);
 
 /*input_handler.c*/
+int				render_minimap(t_data *data);
 void			listen_for_event_input(t_data *data);
 
 /*detect wall*/
 int				detect_wall(double x, double y, t_data *data);
+
+/* render_utils.c */
+int				is_tile_visible(int x, int y, int size);
 
 #endif
