@@ -108,7 +108,7 @@ int	render_minimap(t_data *data)
 	data->minimap.img = NULL;
 	if (data->player.move_y)
 	{
-		new_y = data->player.pos_y + (data->player.move_y * speed);
+		new_y = data->player.pos_y - (data->player.move_y * speed);
 		if (validate_move(data, data->player.pos_x, new_y)
 			&& !detect_wall(data->player.pos_x, new_y, data))
 			data->player.pos_y = new_y;
