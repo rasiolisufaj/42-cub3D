@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 23:25:46 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:45:13 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,5 +268,9 @@ int				detect_wall(double x, double y, t_data *data);
 
 /* render_utils.c */
 int				is_tile_visible(int x, int y, int size);
+
+/* render.c */
+void			render_images(t_data *data);
+int				render(t_data *data);
 
 #endif

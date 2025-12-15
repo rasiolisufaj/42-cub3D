@@ -102,7 +102,7 @@ int	render_minimap(t_data *data)
 	double new_x;
 	double new_y;
 
-	speed = 0.003;
+	speed = 0.0007;
 	if (data->minimap.img)
 		mlx_destroy_image(data->mlx, data->minimap.img);
 	data->minimap.img = NULL;
