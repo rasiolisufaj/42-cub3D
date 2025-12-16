@@ -98,28 +98,9 @@ void	draw_map(t_data *data, int tile_size)
 
 int	render_minimap(t_data *data)
 {
-	double speed;
-	double new_x;
-	double new_y;
-
-	speed = 0.0007;
 	if (data->minimap.img)
 		mlx_destroy_image(data->mlx, data->minimap.img);
 	data->minimap.img = NULL;
-	if (data->player.move_y)
-	{
-		new_y = data->player.pos_y - (data->player.move_y * speed);
-		if (validate_move(data, data->player.pos_x, new_y)
-			&& !detect_wall(data->player.pos_x, new_y, data))
-			data->player.pos_y = new_y;
-	}
-	if (data->player.move_x)
-	{
-		new_x = data->player.pos_x + (data->player.move_x * speed);
-		if (validate_move(data, new_x, data->player.pos_y)
-			&& !detect_wall(new_x, data->player.pos_y, data))
-			data->player.pos_x = new_x;
-	}
 	draw_map(data, 50);
 	return (0);
 }

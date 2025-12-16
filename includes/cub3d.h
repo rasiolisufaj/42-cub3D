@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/15 15:45:13 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:45:58 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 #  define O_DIRECTORY 00200000
 # endif
 
-# define MOVE_SPEED 0.0125
+# define MOVE_SPEED 0.00125
 # define ROT_SPEED 0.015
 
 enum			e_output
