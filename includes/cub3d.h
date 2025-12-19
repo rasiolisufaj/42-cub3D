@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/16 16:45:58 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 21:59:30 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@
 #  define O_DIRECTORY 00200000
 # endif
 
-# define MOVE_SPEED 0.00125
+# define MOVE_SPEED 0.0125
 # define ROT_SPEED 0.015
 
-enum			e_output
+enum				e_output
 {
 	SUCCESS = 0,
 	FAILURE = 1,
@@ -57,7 +57,7 @@ enum			e_output
 	CONTINUE = 4
 };
 
-enum			e_tex_index
+enum				e_tex_index
 {
 	NORTH = 0,
 	SOUTH = 1,
@@ -69,80 +69,103 @@ enum			e_tex_index
 
 typedef struct s_img
 {
-	void		*img;
-	int			*addr;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_img;
+	void			*img;
+	int				*addr;
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
+}					t_img;
 
 typedef struct s_draw_square
 {
-	int			x;
-	int			y;
-	int			size;
-	int			color;
-}				t_draw_square;
+	int				x;
+	int				y;
+	int				size;
+	int				color;
+}					t_draw_square;
 
 typedef struct s_texinfo
 {
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	int			*floor;
-	int			*ceiling;
-	int			size;
-	int			index;
-	double		step;
-	double		pos;
-	int			x;
-	int			y;
-}				t_texinfo;
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	int				*floor;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
+	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+}					t_texinfo;
 
 typedef struct s_player
 {
-	char		dir;
-	int			move_x;
-	int			move_y;
-	int			rotate;
-	int			has_moved;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-}				t_player;
+	char			dir;
+	int				move_x;
+	int				move_y;
+	int				rotate;
+	int				has_moved;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+}					t_player;
+
+typedef struct s_ray
+{
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			camera_x;
+	double			dir_x;
+	double			dir_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			wall_dist;
+	double			wall_x;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+}					t_ray;
 
 typedef struct s_mapinfo
 {
-	int			fd;
-	int			line_count;
-	char		*path;
-	char		**file;
-	int			height;
-	int			width;
-	int			index_end_of_map;
-}				t_mapinfo;
+	int				fd;
+	int				line_count;
+	char			*path;
+	char			**file;
+	int				height;
+	int				width;
+	int				index_end_of_map;
+}					t_mapinfo;
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	char		**map;
-	int			**textures;
-	int			**texture_pixels;
-	double		x;
-	double		y;
-	t_mapinfo	mapinfo;
-	t_texinfo	texinfo;
-	t_player	player;
-	// t_ray		ray;
-	t_img		minimap;
-}				t_data;
+	void			*mlx;
+	void			*win;
+	int				win_height;
+	int				win_width;
+	char			**map;
+	int				**textures;
+	int				**texture_pixels;
+	double			x;
+	double			y;
+	t_mapinfo		mapinfo;
+	t_texinfo		texinfo;
+	t_player		player;
+	t_ray			ray;
+	t_img			minimap;
+}					t_data;
 
 /* ERROR MESSAGES*/
 
@@ -173,104 +196,115 @@ typedef struct s_data
 # define ERR_PLAYER_POS "Invalid player position"
 
 /* check_args.c */
-int				check_file(char *arg, bool cub);
+int					check_file(char *arg, bool cub);
 
 /* check_textures.c */
-int				check_textures_validity(t_data *data, t_texinfo *textures);
+int					check_textures_validity(t_data *data, t_texinfo *textures);
 
 /* parse_data.c */
-void			parse_data(char *path, t_data *data);
+void				parse_data(char *path, t_data *data);
 
 /* get_file_data.c */
-int				get_file_data(t_data *data, char **map);
+int					get_file_data(t_data *data, char **map);
 
 /* create_map.c */
-int				create_map(t_data *data, char **file, int i);
+int					create_map(t_data *data, char **file, int i);
 
 /* fill_color_textures.c */
-int				fill_color_textures(t_data *data, t_texinfo *texinfo,
-					char *line, int j);
+int					fill_color_textures(t_data *data, t_texinfo *texinfo,
+						char *line, int j);
 
 /* create_map.c */
-int				create_map(t_data *data, char **file, int i);
+int					create_map(t_data *data, char **file, int i);
 
 /* check_map_borders.c */
-int				skip_spaces(char **map, int i, int j);
-int				is_valid_cell(char **map_tab, int row, int col);
-int				check_map_borders(t_mapinfo *map, char **map_tab);
+int					skip_spaces(char **map, int i, int j);
+int					is_valid_cell(char **map_tab, int row, int col);
+int					check_map_borders(t_mapinfo *map, char **map_tab);
 
 /* check_map_validity.c */
-int				check_map_validity(t_data *data, char **map_tab);
+int					check_map_validity(t_data *data, char **map_tab);
 
 /* error.c */
-int				err_msg(char *detail, char *str, int code);
-int				err_msg_val(int detail, char *str, int code);
+int					err_msg(char *detail, char *str, int code);
+int					err_msg_val(int detail, char *str, int code);
 
 /* free_data.c */
-void			free_tab(void **tab);
-int				free_data(t_data *data);
+void				free_tab(void **tab);
+int					free_data(t_data *data);
 
 /* exit.c */
-int				quit_cub3d(t_data *data);
-void			clean_exit(t_data *data, int code);
+int					quit_cub3d(t_data *data);
+void				clean_exit(t_data *data, int code);
 
 /* init_data.c */
-void			init_data(t_data *data);
-void			init_img_clean(t_img *img);
+void				init_data(t_data *data);
+void				init_img_clean(t_img *img);
+void				init_ray(t_ray *ray);
 
 /* init_mlx.c */
-void			init_mlx(t_data *data);
-void			init_texture_img(t_data *data, t_img *image, char *path);
-void			init_img(t_data *data, t_img *image, int width, int height);
+void				init_mlx(t_data *data);
+void				init_texture_img(t_data *data, t_img *image, char *path);
+void				init_img(t_data *data, t_img *image, int width, int height);
 
 /* init_textures.c */
-void			init_textures(t_data *data);
-void			init_texinfo(t_texinfo *textures);
+void				init_textures(t_data *data);
+void				init_texinfo(t_texinfo *textures);
 
 /* init_mlx.c */
-void			init_mlx(t_data *data);
-void			init_texture_img(t_data *data, t_img *image, char *path);
-void			init_img(t_data *data, t_img *image, int width, int height);
+void				init_mlx(t_data *data);
+void				init_texture_img(t_data *data, t_img *image, char *path);
+void				init_img(t_data *data, t_img *image, int width, int height);
 
 /* parsing_utils.c */
-bool			ft_is_space(char c);
-int				is_whitespace(char c);
-int				wall_contains_map_chars(char *line);
-int				longest_map_line_len(t_mapinfo *mapinfo, int index);
+bool				ft_is_space(char c);
+int					is_whitespace(char c);
+int					wall_contains_map_chars(char *line);
+int					longest_map_line_len(t_mapinfo *mapinfo, int index);
 
 /*minimap_image.c*/
-int				handle_key(int key_code, t_data *data);
-void			draw_square(t_data *data, t_draw_square p);
-void			draw_map(t_data *data, int tile_size);
-void			init_minimap_image(t_data *data);
-void			draw_player(t_data *data, int size);
-void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_draw_square	draw_init(int x, int y, int size, int color);
+int					handle_key(int key_code, t_data *data);
+void				draw_square(t_data *data, t_draw_square p);
+void				draw_map(t_data *data, int tile_size);
+void				init_minimap_image(t_data *data);
+void				draw_player(t_data *data, int size);
+t_draw_square		draw_init(int x, int y, int size, int color);
+
+/* image_utils.c */
+void				set_image_pixel(t_img *image, int x, int y, int color);
+void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*player_rotate.c*/
-int				rotate_player(t_data *data, double rotdirection);
+int					rotate_player(t_data *data, double rotdirection);
 
 /*player_position.c*/
-int				validate_move(t_data *data, double new_x, double new_y);
+int					validate_move(t_data *data, double new_x, double new_y);
 
 /*player_move.c*/
-int				move_player(t_data *data);
+int					move_player(t_data *data);
 
 /*player_direction.c*/
-void			init_player_direction(t_data *data);
+void				init_player_direction(t_data *data);
 
 /*input_handler.c*/
-int				render_minimap(t_data *data);
-void			listen_for_event_input(t_data *data);
+int					render_minimap(t_data *data);
+void				listen_for_event_input(t_data *data);
 
 /*detect wall*/
-int				detect_wall(double x, double y, t_data *data);
+int					detect_wall(double x, double y, t_data *data);
 
 /* render_utils.c */
-int				is_tile_visible(int x, int y, int size);
+int					is_tile_visible(int x, int y, int size);
 
+/* texture.c */
+void				init_texture_pixels(t_data *data);
+void				update_texture_pixels(t_data *data, t_texinfo *tex,
+						t_ray *ray, int x);
+
+/* raycasting.c */
+int					raycasting(t_player *player, t_data *data);
 /* render.c */
-void			render_images(t_data *data);
-int				render(t_data *data);
+void				render_images(t_data *data);
+int					render(t_data *data);
 
 #endif

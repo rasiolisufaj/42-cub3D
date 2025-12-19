@@ -42,6 +42,8 @@ SRC = 	main.c \
 		render/render_utils.c \
 		render/minimap_image.c \
 		render/minimap_render.c \
+		render/raycasting.c \
+		render/texture.c \
 		render/render.c \
 		exit/exit.c \
 		exit/free_data.c \

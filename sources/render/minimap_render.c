@@ -15,11 +15,10 @@
 
 #include "cub3d.h"
 
-
 static void	draw_minimap_border(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < MINIMAP_HEIGHT)
@@ -39,7 +38,7 @@ static void	draw_minimap_border(t_data *data)
 
 static void	draw_square_border(t_data *data, t_draw_square p)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < p.size)
@@ -55,11 +54,11 @@ static void	draw_square_border(t_data *data, t_draw_square p)
 static void	draw_map_tiles(t_data *data, int tile_size, int offset_x,
 		int offset_y)
 {
-	int x;
-	int y;
-	int x_final;
-	int y_final;
-	t_draw_square p;
+	int				x;
+	int				y;
+	int				x_final;
+	int				y_final;
+	t_draw_square	p;
 
 	y = 0;
 	while (y < data->mapinfo.height)
@@ -84,8 +83,8 @@ static void	draw_map_tiles(t_data *data, int tile_size, int offset_x,
 
 void	draw_map(t_data *data, int tile_size)
 {
-	int offset_x;
-	int offset_y;
+	int	offset_x;
+	int	offset_y;
 
 	offset_x = (int)(140 - (data->player.pos_x * tile_size));
 	offset_y = (int)(80 - (data->player.pos_y * tile_size));
