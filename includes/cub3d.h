@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:26:11 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/19 21:59:30 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:27:04 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 
 # define MOVE_SPEED 0.0125
 # define ROT_SPEED 0.015
+
+# define DIST_MOUSE_WRAP 20
 
 enum				e_output
 {

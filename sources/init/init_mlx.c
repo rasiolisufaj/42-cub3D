@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:10:40 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/16 16:45:21 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:31:47 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	init_mlx(t_data *data)
 	{
 		draw_map(data, 50);
 		draw_player(data, 10);
+		mlx_mouse_move(data->mlx, data->win, data->win_width / 2,
+			data->win_height / 2);
 	}
-	// mlx_mouse_move()
 	return ;
 }
