@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:28:22 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/15 15:25:49 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:36:33 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 		return (1);
 	init_mlx(&data);
 	init_textures(&data);
+	render_images(&data);
 	listen_for_event_input(&data);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);
