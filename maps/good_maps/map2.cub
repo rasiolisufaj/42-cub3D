@@ -1,10 +1,10 @@
-NO textures/test/north.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
-SO textures/test/south.xpm
+NO textures/walls/GLADE_W.xpm
+WE textures/walls/GLADE_W.xpm
+EA textures/walls/Horror_Stone.xpm
+SO textures/walls/Horror_Stone.xpm
 
-F 0,0,0
-C 0,0,0
+F 167,198,200
+C 50,122,132
 
 111111111111111111111
 101000001000000000001

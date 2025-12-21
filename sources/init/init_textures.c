@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:56 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/19 20:26:09 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:10:46 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	init_textures(t_data *data)
 	if (!data->textures)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 	data->textures[NORTH] = xpm_to_img(data, data->texinfo.north);
-	data->textures[SOUTH] = xpm_to_img(data, data->texinfo.north);
-	data->textures[EAST] = xpm_to_img(data, data->texinfo.north);
-	data->textures[WEST] = xpm_to_img(data, data->texinfo.north);
+	data->textures[SOUTH] = xpm_to_img(data, data->texinfo.south);
+	data->textures[EAST] = xpm_to_img(data, data->texinfo.east);
+	data->textures[WEST] = xpm_to_img(data, data->texinfo.west);
 }
 
 void	init_texinfo(t_texinfo *textures)
