@@ -1,7 +1,7 @@
 NO          textures/walls/brick2.xpm
 SO textures/walls/brick2.xpm
 WE textures/walls/stain2.xpm
-EA textures/walls/stain1.xpm
+EA textures/walls/ghost_64x64.xpm
 
 F 0,0,0
 C 1,1,1
