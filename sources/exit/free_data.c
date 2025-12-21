@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:44 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 19:01:42 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 20:22:38 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	free_data(t_data *data)
 	free_mlx(data);
 	if (data->textures)
 		free_tab((void **)data->textures);
-	// if (data->texture_pixels)
-	// 	free_tab((void **)data->texture_pixels);
+	if (data->texture_pixels)
+		free_tab((void **)data->texture_pixels);
 	free_texinfo(&data->texinfo);
 	free_map(data);
 	return (FAILURE);

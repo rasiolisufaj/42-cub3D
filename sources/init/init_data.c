@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:49 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 23:12:41 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 20:25:12 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,27 @@ static void	init_player(t_player *player)
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
+}
+
+void	init_ray(t_ray *ray)
+{
+	ray->camera_x = 0;
+	ray->delta_dist_x = 0;
+	ray->delta_dist_y = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
+	ray->draw_end = 0;
+	ray->draw_start = 0;
+	ray->line_height = 0;
+	ray->map_x = 0;
+	ray->map_y = 0;
+	ray->side = 0;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->wall_dist = 0;
+	ray->wall_x = 0;
 }
 
 void	init_data(t_data *data)

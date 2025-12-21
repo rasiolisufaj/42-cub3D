@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:25:39 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/14 21:02:34 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:30:32 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static int	key_press_handler(int key, t_data *data)
 	if (key == XK_Right)
 		data->player.rotate = 1;
 	if (key == XK_w || key == XK_W)
-		data->player.move_y = -1;
-	if (key == XK_s || key == XK_S)
 		data->player.move_y = 1;
+	if (key == XK_s || key == XK_S)
+		data->player.move_y = -1;
 	if (key == XK_a || key == XK_A)
 		data->player.move_x = -1;
 	if (key == XK_d || key == XK_D)
@@ -51,13 +51,42 @@ static int	key_release_handler(int key, t_data *data)
 	return (0);
 }
 
-// Handle Mouse Function
+// Mouse Function For Bonus
+static void	wrap_mouse_position(t_data *data, int x, int y)
+{
+	if (x > data->win_width - DIST_MOUSE_WRAP)
+	{
+		x = DIST_MOUSE_WRAP;
+		mlx_mouse_move(data->mlx, data->win, x, y);
+	}
+	if (x < DIST_MOUSE_WRAP)
+	{
+		x = data->win_width - DIST_MOUSE_WRAP;
+		mlx_mouse_move(data->mlx, data->win, x, y);
+	}
+}
+
+static int	mouse_motion_handler(int x, int y, t_data *data)
+{
+	static int	old_x = WIN_WIDTH / 2;
+
+	wrap_mouse_position(data, x, y);
+	if (x == old_x)
+		return (0);
+	else if (x < old_x)
+		data->player.has_moved += rotate_player(data, -1);
+	else if (x > old_x)
+		data->player.has_moved += rotate_player(data, 1);
+	old_x = x;
+	return (0);
+}
 
 void	listen_for_event_input(t_data *data)
 {
 	mlx_hook(data->win, ClientMessage, NoEventMask, quit_cub3d, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, key_release_handler, data);
-	// if (BONUS)
-	// mlx_hook -> handle mouse motion
+	if (BONUS)
+		mlx_hook(data->win, MotionNotify, PointerMotionMask,
+			mouse_motion_handler, data);
 }

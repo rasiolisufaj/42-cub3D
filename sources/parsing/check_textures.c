@@ -6,7 +6,7 @@
 /*   By: raisufaj <raisufaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 22:27:19 by raisufaj          #+#    #+#             */
-/*   Updated: 2025/12/08 17:18:27 by raisufaj         ###   ########.fr       */
+/*   Updated: 2025/12/19 20:29:18 by raisufaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ static int	check_valid_rgb(int *rgb)
 	return (SUCCESS);
 }
 
+static unsigned long	convert_rgb_to_hex(int *rgb_tab)
+{
+	unsigned long	result;
+	int				r;
+	int				g;
+	int				b;
+
+	r = rgb_tab[0];
+	g = rgb_tab[1];
+	b = rgb_tab[2];
+	result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	return (result);
+}
+
 int	check_textures_validity(t_data *data, t_texinfo *textures)
 {
 	if (!textures->north || !textures->south || !textures->east
@@ -40,5 +54,7 @@ int	check_textures_validity(t_data *data, t_texinfo *textures)
 		|| check_valid_rgb(textures->floor) == FAILURE
 		|| check_valid_rgb(textures->ceiling) == FAILURE)
 		return (FAILURE);
+	textures->hex_floor = convert_rgb_to_hex(textures->floor);
+	textures->hex_ceiling = convert_rgb_to_hex(textures->ceiling);
 	return (SUCCESS);
 }
