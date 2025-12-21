@@ -1,9 +1,9 @@
-NO  textures/walls/FOREST_W.xpm
-SO  textures/walls/FOREST_2_W.xpm
-WE  textures/walls/GLADE_W.xpm
-EA  textures/walls/BURNED_W.xpm
+NO  textures/walls/burned_w.xpm
+SO  textures/walls/burned_w.xpm
+WE  textures/walls/glade_w.xpm
+EA  textures/walls/glade_w.xpm
 
-F  0,39,25
+F  0,92,52
 C  24,0,19
 
 1111111111111111111111

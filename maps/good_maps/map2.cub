@@ -1,10 +1,10 @@
-NO textures/walls/GLADE_W.xpm
-WE textures/walls/GLADE_W.xpm
-EA textures/walls/Horror_Stone.xpm
-SO textures/walls/Horror_Stone.xpm
+NO textures/walls/burned_w.xpm
+WE textures/walls/forest_w.xpm
+EA textures/walls/forest_w.xpm
+SO textures/walls/burned_w.xpm
 
-F 167,198,200
-C 50,122,132
+C 135,206,235
+F 0,88,49
 
 111111111111111111111
 101000001000000000001

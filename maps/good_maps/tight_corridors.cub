@@ -1,13 +1,13 @@
-NO          textures/walls/FOREST_2_W.xpm
-SO textures/walls/FOREST_2_W.xpm
-WE textures/walls/FOREST_2_W.xpm
-EA textures/walls/FOREST_2_W.xpm
+NO          textures/walls/flame.xpm
+SO textures/walls/water.xpm
+WE textures/walls/water.xpm
+EA textures/walls/flame.xpm
 
-F 21,11,200
-C 201,100,169
+F 168, 168, 181
+C 103, 210, 240
 
 11111111111111111111
-1N000000000000000001
+1E000000000000000001
 10111111111111111001
 10000000000000001001
 10111111111111101001

@@ -1,16 +1,16 @@
-NO          textures/walls/FOREST_2_W.xpm
-SO textures/walls/FOREST_2_W.xpm
-WE textures/walls/FOREST_2_W.xpm
-EA textures/walls/FOREST_2_W.xpm
+NO          textures/walls/brick_20.xpm
+SO textures/walls/brick_20.xpm
+WE textures/walls/brick_20.xpm
+EA textures/walls/brick_20.xpm
 
-F 198,69,69
-C 123,211,15
+F 172,172,172
+C 71,101,90
 
 11111111111111111111
 10000100000000100001
 10110101111010101101
 10000001000001000001
-10111111011111011101
+10111111000111011101
 1000000000N000000001
 10111101111111011101
 10000100000000100001
