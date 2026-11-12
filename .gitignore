@@ -1,3 +1,9 @@
 # Ignore editor configs
 .vscode/
 .cursor/
+
+# Build artifacts
+cub3D
+objects/
+*.o
+*.a

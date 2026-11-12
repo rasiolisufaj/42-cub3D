@@ -89,7 +89,9 @@ $(LIBFT):
 $(MLX):
 	make -sC $(MLX_PATH)
 
+# Force a rebuild so objects compiled without BONUS are not reused
 bonus:
+	rm -rf $(OBJ_PATH) $(NAME)
 	make all BONUS=1
 
 # Clean up build files rule

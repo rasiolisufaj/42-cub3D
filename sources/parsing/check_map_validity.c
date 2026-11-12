@@ -41,21 +41,29 @@ static int	check_map_elements(t_data *data, char **map_tab)
 	return (SUCCESS);
 }
 
-static int	check_position_is_valid(t_data *data, char **map_tab)
+/* Every floor cell (player spot included, already turned into '0') must be
+surrounded by map cells, otherwise the map is open. */
+static int	check_floor_is_closed(char **map_tab)
 {
-	int	px;
-	int	py;
+	int	i;
+	int	j;
 
-	px = (int)data->player.pos_x;
-	py = (int)data->player.pos_y;
-	if (is_valid_cell(map_tab, py - 1, px) == FAILURE)
-		return (FAILURE);
-	if (is_valid_cell(map_tab, py + 1, px) == FAILURE)
-		return (FAILURE);
-	if (is_valid_cell(map_tab, py, px - 1) == FAILURE)
-		return (FAILURE);
-	if (is_valid_cell(map_tab, py, px + 1) == FAILURE)
-		return (FAILURE);
+	i = 0;
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (map_tab[i][j] == '0'
+				&& (is_valid_cell(map_tab, i - 1, j) == FAILURE
+					|| is_valid_cell(map_tab, i + 1, j) == FAILURE
+					|| is_valid_cell(map_tab, i, j - 1) == FAILURE
+					|| is_valid_cell(map_tab, i, j + 1) == FAILURE))
+				return (FAILURE);
+			j++;
+		}
+		i++;
+	}
 	return (SUCCESS);
 }
 
@@ -82,8 +90,6 @@ static int	check_player_position(t_data *data, char **map_tab)
 		}
 		i++;
 	}
-	if (check_position_is_valid(data, map_tab) == FAILURE)
-		return (err_msg(data->mapinfo.path, ERR_PLAYER_POS, FAILURE));
 	return (SUCCESS);
 }
 
@@ -119,6 +125,8 @@ int	check_map_validity(t_data *data, char **map_tab)
 		return (FAILURE);
 	if (check_player_position(data, map_tab) == FAILURE)
 		return (FAILURE);
+	if (check_floor_is_closed(map_tab) == FAILURE)
+		return (err_msg(data->mapinfo.path, ERR_MAP_NO_WALLS, FAILURE));
 	if (check_map_is_last(&data->mapinfo) == FAILURE)
 		return (err_msg(data->mapinfo.path, ERR_MAP_LAST, FAILURE));
 	return (SUCCESS);

@@ -25,11 +25,18 @@ void	init_img(t_data *data, t_img *image, int width, int height)
 
 void	init_texture_img(t_data *data, t_img *image, char *path)
 {
+	int	width;
+	int	height;
+
 	init_img_clean(image);
-	image->img = mlx_xpm_file_to_image(data->mlx, path, &data->texinfo.size,
-			&data->texinfo.size);
+	image->img = mlx_xpm_file_to_image(data->mlx, path, &width, &height);
 	if (image->img == NULL)
 		clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1));
+	if (width != TEX_SIZE || height != TEX_SIZE)
+	{
+		mlx_destroy_image(data->mlx, image->img);
+		clean_exit(data, err_msg(path, ERR_TEX_SIZE, 1));
+	}
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->size_line, &image->endian);
 	return ;

@@ -195,7 +195,7 @@ typedef struct s_data
 # define ERR_INV_CHARACTER "Invalid character in map"
 # define ERR_NUM_PLAYER "Map has more than one player"
 # define ERR_PLAYER_DIR "Map has no player position (expected N, S, E or W)"
-# define ERR_PLAYER_POS "Invalid player position"
+# define ERR_TEX_SIZE "Texture must be 64x64 pixels"
 
 /* check_args.c */
 int					check_file(char *arg, bool cub);

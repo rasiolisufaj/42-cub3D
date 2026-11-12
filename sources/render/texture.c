@@ -26,7 +26,7 @@ void	init_texture_pixels(t_data *data)
 	while (i < data->win_height)
 	{
 		data->texture_pixels[i] = ft_calloc(data->win_width + 1,
-				sizeof * data->texture_pixels);
+				sizeof(int));
 		if (!data->texture_pixels[i])
 			clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 		i++;

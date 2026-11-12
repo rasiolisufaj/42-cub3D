@@ -18,7 +18,7 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
 	else if (y < data->win_height / 2)
 		set_image_pixel(image, x, y, data->texinfo.hex_ceiling);
-	else if (y < data->win_height - 1)
+	else
 		set_image_pixel(image, x, y, data->texinfo.hex_floor);
 }
 
